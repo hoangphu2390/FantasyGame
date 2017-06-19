@@ -1,0 +1,89 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- margins -->
+    <dimen name="margin_distance_2dp">2dp</dimen>
+    <dimen name="margin_distance_5dp">5dp</dimen>
+    <dimen name="margin_distance_7dp">7dp</dimen>
+    <dimen name="margin_distance_10dp">10dp</dimen>
+    <dimen name="margin_distance_15dp">15dp</dimen>
+    <dimen name="margin_distance_20dp">20dp</dimen>
+    <dimen name="margin_distance_25dp">25dp</dimen>
+    <dimen name="margin_distance_30dp">30dp</dimen>
+    <dimen name="margin_distance_35dp">35dp</dimen>
+    <dimen name="margin_distance_40dp">40dp</dimen>
+    <dimen name="margin_distance_50dp">50dp</dimen>
+    <dimen name="margin_distance_60dp">60dp</dimen>
+    <dimen name="margin_distance_70dp">70dp</dimen>
+    <dimen name="margin_distance_80dp">80dp</dimen>
+    <dimen name="margin_distance_90dp">90dp</dimen>
+    <dimen name="margin_distance_100dp">100dp</dimen>
+    <dimen name="margin_distance_110dp">110dp</dimen>
+    <dimen name="margin_distance_120dp">120dp</dimen>
+    <dimen name="margin_distance_130dp">130dp</dimen>
+    <dimen name="margin_distance_140dp">140dp</dimen>
+    <dimen name="margin_distance_150dp">150dp</dimen>
+
+    <!-- padding -->
+    <dimen name="padding_distance_5dp">5dp</dimen>
+    <dimen name="padding_distance_10dp">10dp</dimen>
+    <dimen name="padding_distance_15dp">15dp</dimen>
+    <dimen name="padding_distance_20dp">20dp</dimen>
+    <dimen name="padding_distance_25dp">25dp</dimen>
+    <dimen name="padding_distance_30dp">30dp</dimen>
+    <dimen name="padding_distance_35dp">35dp</dimen>
+    <dimen name="padding_distance_40dp">40dp</dimen>
+    <dimen name="padding_distance_50dp">50dp</dimen>
+    <dimen name="padding_distance_60dp">60dp</dimen>
+    <dimen name="padding_distance_70dp">70dp</dimen>
+    <dimen name="padding_distance_80dp">80dp</dimen>
+
+    <!-- font text size -->
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_22">22sp</dimen>
+    <dimen name="text_size_24">24sp</dimen>
+    <dimen name="text_size_26">26sp</dimen>
+    <dimen name="text_size_28">28sp</dimen>
+    <dimen name="text_size_30">30sp</dimen>
+    <dimen name="text_size_32">32sp</dimen>
+    <dimen name="text_size_34">32sp</dimen>
+    <dimen name="text_size_36">32sp</dimen>
+    <dimen name="text_size_38">38sp</dimen>
+    <dimen name="text_size_40">40sp</dimen>
+
+    <!-- width button -->
+    <dimen name="width_button_normal">60dp</dimen>
+    <dimen name="width_button_large">120dp</dimen>
+    <dimen name="width_button_big">180dp</dimen>
+
+    <!-- height button -->
+    <dimen name="height_button_normal">20dp</dimen>
+    <dimen name="height_button_large">40dp</dimen>
+    <dimen name="height_button_big">60dp</dimen>
+    <dimen name="height_layout_header">50dp</dimen>
+    <dimen name="height_edit_text_detail_general_setting">40dp</dimen>
+
+    <!-- width stroke or height divider -->
+    <dimen name="thickness_mini">1dp</dimen>
+    <dimen name="thickness_normal">2dp</dimen>
+    <dimen name="thickness_large">3dp</dimen>
+    <dimen name="thickness_big">4dp</dimen>
+
+    <!-- width right_drawer -->
+    <dimen name="width_right_drawer">360dp</dimen>
+
+    <!-- min height edittext -->
+    <dimen name="min_height_edittext">50dp</dimen>
+
+    <!-- height img cover and img avatar -->
+    <dimen name="height_layout_img">230dp</dimen>
+    <dimen name="height_img_avatar">100dp</dimen>
+    <dimen name="min_height_img_cover">50dp</dimen>
+
+</resources>

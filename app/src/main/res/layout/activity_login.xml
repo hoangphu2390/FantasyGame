@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="user"
+            type="com.fantasygame.data.model.User" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_distance_40dp"
+                android:layout_marginRight="@dimen/margin_distance_40dp"
+                android:background="@drawable/bg_boder_black_radius"
+                android:hint="@string/email"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="@dimen/padding_distance_10dp"
+                android:paddingLeft="@dimen/padding_distance_20dp"
+                android:paddingRight="@dimen/padding_distance_20dp"
+                android:paddingTop="@dimen/padding_distance_10dp"
+                android:text="@{user.name}"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="@dimen/text_size_14"
+                android:textStyle="italic" />
+
+            <EditText
+                android:id="@+id/edtPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_distance_40dp"
+                android:layout_marginRight="@dimen/margin_distance_40dp"
+                android:layout_marginTop="@dimen/margin_distance_20dp"
+                android:background="@drawable/bg_boder_black_radius"
+                android:hint="@string/password"
+                android:imeOptions="actionDone"
+                android:paddingBottom="@dimen/padding_distance_10dp"
+                android:paddingLeft="@dimen/padding_distance_20dp"
+                android:paddingRight="@dimen/padding_distance_20dp"
+                android:paddingTop="@dimen/padding_distance_10dp"
+                android:text="@{user.description}"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="@dimen/text_size_14"
+                android:textStyle="italic" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margin_distance_20dp"
+                android:text="@string/forgot_pass"
+                android:textColor="@color/black"
+                android:textStyle="italic" />
+
+            <Button
+                android:id="@+id/btnSignIn"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margin_distance_30dp"
+                android:background="@color/yellow"
+                android:text="@string/btnSignup"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

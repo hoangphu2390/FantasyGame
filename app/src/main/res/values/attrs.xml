@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="autoimage">
+        <attr name="isMainMenuBackground" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="fonts">
+        <attr name="fonttype" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="SquareImage">
+        <attr name="fixedAlong" format="string" />
+    </declare-styleable>
+    <declare-styleable name="ColorSupplied">
+        <attr name="isColorSupplied" format="boolean"></attr>
+    </declare-styleable>
+    <declare-styleable name="TextView">
+        <attr name="istoscale" format="boolean"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="PxBlurringView">
+        <attr name="blurRadius" format="integer" />
+        <attr name="downsampleFactor" format="integer" />
+        <attr name="overlayColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="MaterialProgressBar">
+        <attr name="progressColour" format="color" />
+        <attr name="secondaryProgressColour" format="color" />
+        <attr name="backgroundColour" format="color" />
+        <attr name="duration" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="CirclePhoto">
+        <attr name="circleImageBorderWidth" format="integer" />
+        <attr name="circleImageBorderColor" format="integer" />
+    </declare-styleable>
+</resources>
