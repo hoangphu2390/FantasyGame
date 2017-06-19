@@ -13,13 +13,23 @@
     <!-- edittext show messenger -->
     <string name="show_error_email_invalid">Email invalid</string>
     <string name="show_error_email">Please enter email</string>
+    <string name="show_error_username">Please enter username</string>
     <string name="show_error_password">Please enter password</string>
+    <string name="show_error_phone">Please enter phone</string>
+    <string name="show_error_address">Please enter address</string>
+    <string name="show_error_display_name">Please enter display name</string>
     <string name="error_login">Incorrect email and/or password.</string>
     <string name="error_connect_server">Error connect server. Please check network state.</string>
 
     <!-- Sign in -->
     <string name="email">Email</string>
+    <string name="username">Username</string>
     <string name="password">Password</string>
+    <string name="display_name">Display Name</string>
+    <string name="phone">Phone</string>
+    <string name="address">Address</string>
     <string name="forgot_pass"><u>Forgot password?</u></string>
+    <string name="create_account"><u>Create account</u></string>
     <string name="btnSignup">Sign up</string>
+    <string name="btnSignin">Sign in</string>
 </resources>

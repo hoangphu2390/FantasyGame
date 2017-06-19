@@ -2,17 +2,15 @@ package com.fantasygame.ui.login;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fantasygame.R;
 import com.fantasygame.data.model.User;
-import com.fantasygame.databinding.ActivityLoginBinding;
+import com.fantasygame.data.model.response.LoginResponse;
 import com.fantasygame.define.Navigator;
 import com.fantasygame.utils.Utils;
 
@@ -25,33 +23,30 @@ import butterknife.OnClick;
  */
 
 public class LoginActivity extends Activity implements LoginView {
-    @Bind(R.id.edtEmail)
-    EditText edtEmail;
+    @Bind(R.id.edtUsername)
+    EditText edtUsername;
     @Bind(R.id.edtPass)
     EditText edtPass;
 
     private ProgressDialog progressDialog;
     private LoginPresenter presenter;
-    private String email, password;
-    private User user = new User();
-    private ActivityLoginBinding binding;
+    private String username, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil
-                .setContentView(this, R.layout.activity_login);
+        setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         progressDialog = new ProgressDialog(this);
         setupPresenter();
     }
 
     @Override
-    public void showLoginSuccessful(@NonNull User user, @NonNull String message) {
-        user.setName("Phu");
-        user.setDescription(null);
-        binding.setUser(user);
-        Utils.showToast(message);
+    public void showResultLogin(@NonNull LoginResponse response) {
+        Utils.showToast(response.message);
+        if (response.result) {
+            Navigator.openMainActivity(LoginActivity.this);
+        }
     }
 
     @Override
@@ -77,15 +72,11 @@ public class LoginActivity extends Activity implements LoginView {
 
     private boolean checkConditionLogin() {
         boolean isError = false;
-        email = edtEmail.getText().toString().trim();
+        username = edtUsername.getText().toString().trim();
         password = edtPass.getText().toString().trim();
-        if (email.isEmpty()) {
-            edtEmail.setError(getString(R.string.show_error_email));
-            edtEmail.requestFocus();
-            isError = true;
-        } else if (!Utils.isValidEmail(email)) {
-            edtEmail.setError(getString(R.string.show_error_email_invalid));
-            edtEmail.requestFocus();
+        if (username.isEmpty()) {
+            edtUsername.setError(getString(R.string.show_error_username));
+            edtUsername.requestFocus();
             isError = true;
         } else if (password.isEmpty()) {
             edtPass.setError(getString(R.string.show_error_password));
@@ -104,7 +95,13 @@ public class LoginActivity extends Activity implements LoginView {
 
     @OnClick(R.id.btnSignIn)
     public void clickSignIn() {
-        showLoginSuccessful(user, "success");
+        if (checkConditionLogin()) return;
+        presenter.login(username, password);
+    }
+
+    @OnClick(R.id.tv_create_account)
+    public void createAccount() {
+        Navigator.openRegisterActivity(LoginActivity.this);
     }
 }
 
