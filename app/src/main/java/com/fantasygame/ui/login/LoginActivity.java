@@ -33,7 +33,7 @@ public class LoginActivity extends Activity implements LoginView {
     private ProgressDialog progressDialog;
     private LoginPresenter presenter;
     private String email, password;
-    private User user;
+    private User user = new User();
     private ActivityLoginBinding binding;
 
     @Override
@@ -42,18 +42,16 @@ public class LoginActivity extends Activity implements LoginView {
         binding = DataBindingUtil
                 .setContentView(this, R.layout.activity_login);
         ButterKnife.bind(this);
-
         progressDialog = new ProgressDialog(this);
-        user = new User();
-        binding.setUser(user);
         setupPresenter();
     }
 
     @Override
     public void showLoginSuccessful(@NonNull User user, @NonNull String message) {
         user.setName("Phu");
-        user.setDescription("Dep trai");
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        user.setDescription(null);
+        binding.setUser(user);
+        Utils.showToast(message);
     }
 
     @Override

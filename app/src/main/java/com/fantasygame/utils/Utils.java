@@ -23,6 +23,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.fantasygame.define.FantatsyGame;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -205,5 +208,9 @@ public abstract class Utils {
     //Check email is valid
     public static boolean isValidEmail(String email) {
         return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    public static void showToast(String content){
+        Toast.makeText(FantatsyGame.getInstance(), content, Toast.LENGTH_SHORT).show();
     }
 }

@@ -1,15 +1,22 @@
 package com.fantasygame.define;
 
+import android.app.Application;
 
 import com.fantasygame.BuildConfig;
 
 import timber.log.Timber;
 
 /**
- * Created by Kiet Nguyen on 03-Dec-16.
+ * Created by HP on 15/06/2017.
  */
 
-public class Application extends android.app.Application {
+public class FantatsyGame extends Application {
+
+    private static FantatsyGame sInstance;
+
+    public static FantatsyGame getInstance() {
+        return sInstance;
+    }
 
     @Override
     public void onCreate() {
@@ -18,5 +25,6 @@ public class Application extends android.app.Application {
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
         }
+        sInstance = this;
     }
 }
