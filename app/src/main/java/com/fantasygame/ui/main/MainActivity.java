@@ -8,6 +8,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
@@ -18,7 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fantasygame.R;
+import com.fantasygame.base.BaseActivity;
 import com.fantasygame.data.model.NavDrawerItem;
+import com.fantasygame.data.model.response.LogoutResponse;
+import com.fantasygame.define.Navigator;
 import com.fantasygame.service.ConnectionService;
 import com.fantasygame.ui.home.HomeFragment;
 import com.fantasygame.ui.profile.ProfileFragment;
@@ -30,7 +34,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends Activity implements ConnectionService.postResultConnection {
+public class MainActivity extends BaseActivity implements MainView, ConnectionService.postResultConnection {
 
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
@@ -56,6 +60,7 @@ public class MainActivity extends Activity implements ConnectionService.postResu
     private boolean doubleBackToExitPressedOnce;
     public static MainActivity self;
     private ConnectionService connectionService;
+    private MainPresenter presenter;
 
 
     @Override
@@ -69,6 +74,9 @@ public class MainActivity extends Activity implements ConnectionService.postResu
 
     private void initComponent(Bundle savedInstanceState) {
         self = this;
+        presenter = new MainPresenter();
+        presenter.bindView(this);
+
         mTitle = mDrawerTitle = getTitle();
         navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
         navDrawerItems = new ArrayList<NavDrawerItem>();
@@ -99,6 +107,29 @@ public class MainActivity extends Activity implements ConnectionService.postResu
         }
     }
 
+    @Override
+    public void hideLoadingUI() {
+        hideProgressDialog();
+    }
+
+    @Override
+    public void showLoadingUI() {
+        loadingProgressDialog();
+    }
+
+    @Override
+    public void showErrorLoadingUI(@NonNull Throwable throwable) {
+        hideProgressDialog();
+        Utils.showToast(throwable.getMessage());
+    }
+
+    @Override
+    public void showResultLogout(LogoutResponse response) {
+        Utils.showToast(response.message);
+        if (!response.result) return;
+        Navigator.openLoginActivity(MainActivity.this);
+    }
+
     private class SlideMenuClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -119,6 +150,7 @@ public class MainActivity extends Activity implements ConnectionService.postResu
                 fragment = new ProfileFragment();
                 break;
             case 2:
+                presenter.logout();
                 break;
             default:
                 break;

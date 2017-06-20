@@ -5,11 +5,10 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fantasygame.R;
-import com.fantasygame.data.model.User;
+import com.fantasygame.base.BaseActivity;
 import com.fantasygame.data.model.response.LoginResponse;
 import com.fantasygame.define.Navigator;
 import com.fantasygame.utils.Utils;
@@ -22,13 +21,12 @@ import butterknife.OnClick;
  * Created by HP on 18/06/2017.
  */
 
-public class LoginActivity extends Activity implements LoginView {
+public class LoginActivity extends BaseActivity implements LoginView {
     @Bind(R.id.edtUsername)
     EditText edtUsername;
     @Bind(R.id.edtPass)
     EditText edtPass;
 
-    private ProgressDialog progressDialog;
     private LoginPresenter presenter;
     private String username, password;
 
@@ -37,7 +35,6 @@ public class LoginActivity extends Activity implements LoginView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        progressDialog = new ProgressDialog(this);
         setupPresenter();
     }
 
@@ -51,20 +48,17 @@ public class LoginActivity extends Activity implements LoginView {
 
     @Override
     public void hideLoadingUI() {
-        progressDialog.dismiss();
+        hideProgressDialog();
     }
 
     @Override
     public void showLoadingUI() {
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage(getString(R.string.please_wait));
-        progressDialog.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
-        progressDialog.show();
+        loadingProgressDialog();
     }
 
     @Override
     public void showErrorLoadingUI(@NonNull Throwable throwable) {
-        progressDialog.dismiss();
+        hideProgressDialog();
         Toast.makeText(this, getString(R.string.error_login), Toast.LENGTH_SHORT).show();
     }
 

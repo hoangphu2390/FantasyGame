@@ -48,6 +48,7 @@
             android:name=".ui.main.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
+
     </application>
 
 </manifest>

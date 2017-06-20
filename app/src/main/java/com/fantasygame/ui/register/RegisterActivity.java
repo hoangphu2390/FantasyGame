@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.fantasygame.R;
+import com.fantasygame.base.BaseActivity;
 import com.fantasygame.data.model.response.RegisterResponse;
 import com.fantasygame.define.Navigator;
 import com.fantasygame.utils.UsPhoneNumberFormatter;
@@ -24,7 +25,7 @@ import butterknife.OnClick;
  * Created by HP on 19/06/2017.
  */
 
-public class RegisterActivity extends Activity implements RegisterView {
+public class RegisterActivity extends BaseActivity implements RegisterView {
 
     @Bind(R.id.edtUsername)
     EditText edtUsername;
@@ -39,7 +40,6 @@ public class RegisterActivity extends Activity implements RegisterView {
     @Bind(R.id.edtAddress)
     EditText edtAddress;
 
-    private ProgressDialog progressDialog;
     private RegisterPresenter presenter;
     private String username, password, email, phone, address, display_name;
 
@@ -53,25 +53,22 @@ public class RegisterActivity extends Activity implements RegisterView {
                 new WeakReference<EditText>(edtPhone));
         edtPhone.addTextChangedListener(addLineNumberFormatter);
 
-        progressDialog = new ProgressDialog(this);
         setupPresenter();
     }
 
     @Override
     public void hideLoadingUI() {
-        progressDialog.dismiss();
+        hideProgressDialog();
     }
 
     @Override
     public void showLoadingUI() {
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage(getString(R.string.please_wait));
-        progressDialog.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
-        progressDialog.show();
+        loadingProgressDialog();
     }
 
     @Override
     public void showErrorLoadingUI(@NonNull Throwable throwable) {
+        hideProgressDialog();
         Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_SHORT).show();
     }
 

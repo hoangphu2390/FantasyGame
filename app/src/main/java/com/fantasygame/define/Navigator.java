@@ -3,6 +3,7 @@ package com.fantasygame.define;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.fantasygame.ui.login.LoginActivity;
 import com.fantasygame.ui.main.MainActivity;
 import com.fantasygame.ui.register.RegisterActivity;
 
@@ -19,6 +20,12 @@ public class Navigator {
 
     public static void openRegisterActivity(Activity activity) {
         Intent intent = new Intent(activity, RegisterActivity.class);
+        activity.startActivity(intent);
+        activity.finish();
+    }
+
+    public static void openLoginActivity(Activity activity) {
+        Intent intent = new Intent(activity, LoginActivity.class);
         activity.startActivity(intent);
         activity.finish();
     }

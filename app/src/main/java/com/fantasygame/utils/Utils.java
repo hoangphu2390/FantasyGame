@@ -25,10 +25,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fantasygame.R;
 import com.fantasygame.define.FantatsyGame;
+import com.squareup.picasso.Picasso;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -212,5 +216,16 @@ public abstract class Utils {
 
     public static void showToast(String content){
         Toast.makeText(FantatsyGame.getInstance(), content, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void loadAvatarFromURL(Context context, String image_path, CircleImageView imageView) {
+        try {
+            if (image_path.contains(" ")) image_path = image_path.replace(" ", "%20");
+            Picasso.with(context).load(image_path)
+                    .placeholder(R.drawable.uploadpic)
+                    .error(R.drawable.uploadpic).fit().centerInside().into(imageView);
+        } catch (IllegalArgumentException ex) {
+
+        }
     }
 }
