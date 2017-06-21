@@ -7,5 +7,5 @@ package com.fantasygame.data.model.response;
 public class LoginResponse {
     public String message;
     public boolean result;
-    public int data;
+    public String data;
 }

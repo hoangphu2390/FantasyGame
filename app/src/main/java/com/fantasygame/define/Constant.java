@@ -12,4 +12,11 @@ public class Constant {
     //Network
     public static final String ACTION_WIFI_CONECTION = "android.net.wifi.WIFI_STATE_CHANGED";
     public static final String ACTION_CONNECTION = "android.net.conn.CONNECTIVITY_CHANGE";
+
+    // Key Bundle
+    public static final String POSITION = "position";
+
+    // Tab Pick
+    public static final int TAB_SPORT = 1;
+    public static final int TAB_STOCK = 2;
 }

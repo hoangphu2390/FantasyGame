@@ -228,4 +228,11 @@ public abstract class Utils {
 
         }
     }
+
+    public static void loadImageFromURL(Context context, String image_path, ImageView imageView) {
+        if (image_path.contains(" ")) image_path = image_path.replace(" ", "%20");
+        Picasso.with(context).load(image_path)
+                .placeholder(R.color.gray_D3)
+                .error(R.color.gray_D3).fit().centerInside().into(imageView);
+    }
 }

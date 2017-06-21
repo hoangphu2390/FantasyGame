@@ -1,7 +1,5 @@
 package com.fantasygame.ui.login;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.widget.EditText;
@@ -33,7 +31,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_sign_in);
         ButterKnife.bind(this);
         setupPresenter();
     }

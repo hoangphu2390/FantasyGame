@@ -25,6 +25,7 @@ import com.fantasygame.data.model.response.LogoutResponse;
 import com.fantasygame.define.Navigator;
 import com.fantasygame.service.ConnectionService;
 import com.fantasygame.ui.home.HomeFragment;
+import com.fantasygame.ui.pick.PickFragment;
 import com.fantasygame.ui.profile.ProfileFragment;
 import com.fantasygame.utils.Utils;
 
@@ -144,7 +145,7 @@ public class MainActivity extends BaseActivity implements MainView, ConnectionSe
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new HomeFragment();
+                fragment = new PickFragment();
                 break;
             case 1:
                 fragment = new ProfileFragment();
@@ -225,7 +226,7 @@ public class MainActivity extends BaseActivity implements MainView, ConnectionSe
         }
 
         Fragment currentFragment = getFragmentManager().findFragmentById(R.id.frame_container);
-        if (currentFragment instanceof HomeFragment) {
+        if (currentFragment instanceof PickFragment) {
             onClickBack();
         } else {
             FragmentManager fm = getFragmentManager();

@@ -19,17 +19,23 @@
     <string name="show_error_address">Please enter address</string>
     <string name="show_error_display_name">Please enter display name</string>
     <string name="error_login">Incorrect email and/or password.</string>
+    <string name="error_confirm_pwd_not_same_pwd">Confirm password not same password</string>
     <string name="error_connect_server">Error connect server. Please check network state.</string>
 
     <!-- Sign in -->
     <string name="email">Email</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="read_term_and_policy">I have read the Term and Policy</string>
     <string name="display_name">Display Name</string>
-    <string name="phone">Phone</string>
+    <string name="phone">Phone number</string>
     <string name="address">Address</string>
     <string name="forgot_pass"><u>Forgot password?</u></string>
-    <string name="create_account"><u>Create account</u></string>
+    <string name="sign_up"><u>Sign up</u></string>
     <string name="btnSignup">Sign up</string>
     <string name="btnSignin">Sign in</string>
+    <string name="btnContinue">Continue</string>
+    <string name="sport">sport</string>
+    <string name="stock">stock</string>
 </resources>

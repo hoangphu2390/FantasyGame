@@ -4,6 +4,7 @@ package com.fantasygame.api;
 import com.fantasygame.data.model.response.LoginResponse;
 import com.fantasygame.data.model.response.LogoutResponse;
 import com.fantasygame.data.model.response.RegisterResponse;
+import com.fantasygame.data.model.response.SportResponse;
 import com.fantasygame.data.model.response.TeamResponse;
 
 import retrofit.http.Field;
@@ -21,6 +22,7 @@ public interface ServerAPI {
     String PATH_REGISTER = "user/sign-up";
     String PATH_LOGOUT = "user/sign-out";
     String PATH_GET_LIST_TEAM = "team/featured";
+    String PATH_GET_LIST_SPORT = "sport";
 
     @FormUrlEncoded
     @POST(PATH_LOGIN)
@@ -42,4 +44,7 @@ public interface ServerAPI {
     @GET(PATH_GET_LIST_TEAM)
     Observable<TeamResponse> getListTeam(@Query("page") int page,
                                          @Query("limit") int limit);
+
+    @GET(PATH_GET_LIST_SPORT)
+    Observable<SportResponse> getListSport();
 }

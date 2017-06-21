@@ -1,41 +1,38 @@
-package com.fantasygame.ui.home;
+package com.fantasygame.ui.pick;
 
 import com.fantasygame.api.ServerAPI;
 import com.fantasygame.base.Presenter;
 import com.fantasygame.define.Dependencies;
+import com.fantasygame.ui.home.HomeView;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by HP on 20/06/2017.
+ * Created by HP on 21/06/2017.
  */
 
-public class HomePresenter extends Presenter<HomeView> {
-
-    final int LIMIT_PAGE = 20;
+public class PickPresenter extends Presenter<PickView> {
 
     ServerAPI serverAPI;
-    int currentPage = 1;
-    boolean isLoadMore;
 
-    public HomePresenter() {
+    public PickPresenter() {
         serverAPI = Dependencies.getServerAPI();
     }
 
-    public void getListTeam(int page, int limit) {
-        final HomeView view = view();
+    public void getListSport() {
+        final PickView view = view();
         if (view != null) {
             view.showLoadingUI();
         }
-        subscriptions.add(serverAPI.getListTeam(page, limit)
+        subscriptions.add(serverAPI.getListSport()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {
                     if (view != null) {
                         try {
                             view.hideLoadingUI();
-                            view.showResultGetListTeam(response, isLoadMore);
+                            view.showResultGetListSport(response);
                         } catch (Exception ex) {
                         }
                     }
@@ -47,14 +44,5 @@ public class HomePresenter extends Presenter<HomeView> {
                     }
                 }));
     }
-
-    public void isLoadMore(boolean isLoadMore) {
-        if (!isLoadMore) {
-            currentPage = 1;
-        } else {
-            ++currentPage;
-        }
-        this.isLoadMore = isLoadMore;
-        getListTeam(currentPage, LIMIT_PAGE);
-    }
 }
+
