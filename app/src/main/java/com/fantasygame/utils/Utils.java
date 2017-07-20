@@ -25,13 +25,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-<<<<<<< HEAD
-=======
-
-import com.fantasygame.R;
-import com.fantasygame.define.FantatsyGame;
-import com.squareup.picasso.Picasso;
->>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
 
 import com.fantasygame.R;
 import com.fantasygame.define.FantatsyGame;
@@ -231,10 +224,6 @@ public abstract class Utils {
 
     public static void loadAvatarFromURL(Context context, String image_path, CircleImageView imageView) {
         try {
-<<<<<<< HEAD
-=======
-            if (image_path.contains(" ")) image_path = image_path.replace(" ", "%20");
->>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
             Picasso.with(context).load(image_path)
                     .placeholder(R.drawable.uploadpic)
                     .error(R.drawable.uploadpic).fit().centerInside().into(imageView);
@@ -244,15 +233,10 @@ public abstract class Utils {
     }
 
     public static void loadImageFromURL(Context context, String image_path, ImageView imageView) {
-<<<<<<< HEAD
-=======
-        if (image_path.contains(" ")) image_path = image_path.replace(" ", "%20");
->>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
         Picasso.with(context).load(image_path)
                 .placeholder(R.color.gray_D3)
                 .error(R.color.gray_D3).fit().centerInside().into(imageView);
     }
-<<<<<<< HEAD
 
     public static String formatDateTime(String old_fd, String new_fd, String dateFormate) {
         SimpleDateFormat sdf = new SimpleDateFormat(old_fd);
@@ -266,6 +250,4 @@ public abstract class Utils {
         }
         return "";
     }
-=======
->>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
 }

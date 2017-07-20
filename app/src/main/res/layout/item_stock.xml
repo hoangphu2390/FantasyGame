@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#1c1c1c"
-<<<<<<< HEAD
     android:orientation="vertical">
 
     <LinearLayout
@@ -40,29 +39,4 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@color/gray_4b" />
-=======
-    android:padding="10dp"
-    android:orientation="horizontal">
-
-    <TextView
-        android:id="@+id/tv_name_stock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:text="U.S."
-        android:textSize="@dimen/text_size_18"/>
-
-    <View
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="1dp"/>
-
-    <TextView
-        android:id="@+id/tv_price_stock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:text="20,230.41"
-        android:textSize="@dimen/text_size_18"/>
->>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
 </LinearLayout>
