@@ -1,12 +1,8 @@
-package com.fantasygame.ui.main;
+package com.fantasygame.ui.home;
 
 import com.fantasygame.api.ServerAPI;
 import com.fantasygame.base.Presenter;
 import com.fantasygame.define.Dependencies;
-<<<<<<< HEAD
-=======
-import com.fantasygame.ui.home.HomeView;
->>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -15,38 +11,35 @@ import rx.schedulers.Schedulers;
  * Created by HP on 20/06/2017.
  */
 
-public class MainPresenter extends Presenter<MainView> {
+public class HomePresenter extends Presenter<HomeView> {
+
+    final int LIMIT_PAGE = 20;
 
     ServerAPI serverAPI;
+    int currentPage = 1;
+    boolean isLoadMore;
 
-    public MainPresenter() {
+    public HomePresenter() {
         serverAPI = Dependencies.getServerAPI();
     }
 
-<<<<<<< HEAD
-    public void logout(String api_token) {
-=======
-    public void logout() {
->>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
-        final MainView view = view();
+    public void getListTeam(int page, int limit) {
+        final HomeView view = view();
         if (view != null) {
             view.showLoadingUI();
         }
-<<<<<<< HEAD
-        subscriptions.add(serverAPI.logout(api_token)
-=======
-        subscriptions.add(serverAPI.logout()
->>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
+        subscriptions.add(serverAPI.getListTeam(page, limit)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {
                     if (view != null) {
                         try {
                             view.hideLoadingUI();
-                            view.showResultLogout(response);
+                            view.showResultGetListTeam(response, isLoadMore);
                         } catch (Exception ex) {
                         }
                     }
+
                 }, throwable -> {
                     if (view != null) {
                         view.hideLoadingUI();
@@ -54,5 +47,14 @@ public class MainPresenter extends Presenter<MainView> {
                     }
                 }));
     }
-}
 
+    public void isLoadMore(boolean isLoadMore) {
+        if (!isLoadMore) {
+            currentPage = 1;
+        } else {
+            ++currentPage;
+        }
+        this.isLoadMore = isLoadMore;
+        getListTeam(currentPage, LIMIT_PAGE);
+    }
+}

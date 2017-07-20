@@ -39,9 +39,14 @@
     <string name="btnSignup">Sign up</string>
     <string name="btnSignin">Sign in</string>
     <string name="btnContinue">Continue</string>
+<<<<<<< HEAD
     <string name="btnHome">Home</string>
     <string name="btnPlayNow">Play Now</string>
     <string name="sport">sport</string>
     <string name="stock">stock</string>
     <string name="winner_this_week">%s WINNER</string>
+=======
+    <string name="sport">sport</string>
+    <string name="stock">stock</string>
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
 </resources>

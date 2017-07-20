@@ -20,14 +20,21 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.fantasygame.R;
+import com.fantasygame.base.BaseActivity;
 import com.fantasygame.data.model.NavDrawerItem;
 import com.fantasygame.data.model.response.LogoutResponse;
 import com.fantasygame.define.Navigator;
 import com.fantasygame.service.ConnectionService;
+<<<<<<< HEAD
 import com.fantasygame.ui.matches.MatchesFragment;
 import com.fantasygame.ui.setting.SettingFragment;
 import com.fantasygame.ui.sport.SportFragment;
 import com.fantasygame.utils.PreferenceUtils;
+=======
+import com.fantasygame.ui.home.HomeFragment;
+import com.fantasygame.ui.pick.PickFragment;
+import com.fantasygame.ui.profile.ProfileFragment;
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
 import com.fantasygame.utils.Utils;
 
 import java.util.ArrayList;
@@ -36,9 +43,13 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+<<<<<<< HEAD
 public class MainActivity extends FragmentActivity implements MainView, ConnectionService.postResultConnection {
 
     final int[] Menu_Icons = {R.drawable.info, R.drawable.setting, R.drawable.ic_matches, R.drawable.logout};
+=======
+public class MainActivity extends BaseActivity implements MainView, ConnectionService.postResultConnection {
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
 
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
@@ -57,6 +68,7 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
     @Bind(R.id.progressBar)
     ProgressBar progressBar;
 
+<<<<<<< HEAD
     ActionBarDrawerToggle mDrawerToggle;
     CharSequence mDrawerTitle;
     String[] navMenuTitles;
@@ -68,6 +80,19 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
     ConnectionService connectionService;
     MainPresenter presenter;
     ProgressDialog progressDialog;
+=======
+    private ActionBarDrawerToggle mDrawerToggle;
+    private CharSequence mDrawerTitle;
+    private String[] navMenuTitles;
+    private CharSequence mTitle;
+    private ArrayList<NavDrawerItem> navDrawerItems;
+    private NavDrawerListAdapter adapter;
+    private boolean doubleBackToExitPressedOnce;
+    public static MainActivity self;
+    private ConnectionService connectionService;
+    private MainPresenter presenter;
+
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +105,10 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
 
     private void initComponent(Bundle savedInstanceState) {
         self = this;
+<<<<<<< HEAD
         progressDialog = new ProgressDialog(this);
+=======
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
         presenter = new MainPresenter();
         presenter.bindView(this);
 
@@ -116,25 +144,42 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
 
     @Override
     public void hideLoadingUI() {
+<<<<<<< HEAD
         progressBar.setVisibility(View.GONE);
+=======
+        hideProgressDialog();
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
     }
 
     @Override
     public void showLoadingUI() {
+<<<<<<< HEAD
         progressBar.setVisibility(View.VISIBLE);
+=======
+        loadingProgressDialog();
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
     }
 
     @Override
     public void showErrorLoadingUI(@NonNull Throwable throwable) {
+<<<<<<< HEAD
         hideLoadingUI();
+=======
+        hideProgressDialog();
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
         Utils.showToast(throwable.getMessage());
     }
 
     @Override
     public void showResultLogout(LogoutResponse response) {
+<<<<<<< HEAD
         if (!response.result) return;
         Utils.showToast(getString(R.string.logout_successful));
         PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_LogInLogOutCheck, "logout");
+=======
+        Utils.showToast(response.message);
+        if (!response.result) return;
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
         Navigator.openLoginActivity(MainActivity.this);
     }
 
@@ -152,18 +197,26 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
         Fragment fragment = null;
         switch (position) {
             case 0:
+<<<<<<< HEAD
                 fragment = new SportFragment();
+=======
+                fragment = new PickFragment();
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
                 break;
             case 1:
                 fragment = new SettingFragment();
                 break;
             case 2:
+<<<<<<< HEAD
                 fragment = new MatchesFragment();
                 break;
             case 3:
                 String api_token = PreferenceUtils.getFromPrefs(this, PreferenceUtils.PREFS_ApiToken, "");
                 if (api_token != null && !api_token.isEmpty())
                     presenter.logout(api_token);
+=======
+                presenter.logout();
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
                 break;
             default:
                 break;
@@ -234,8 +287,13 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
             mDrawerLayout.closeDrawer(mDrawerList);
         }
 
+<<<<<<< HEAD
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.frame_container);
         if (currentFragment instanceof SportFragment) {
+=======
+        Fragment currentFragment = getFragmentManager().findFragmentById(R.id.frame_container);
+        if (currentFragment instanceof PickFragment) {
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
             onClickBack();
         } else {
             FragmentManager fm = getSupportFragmentManager();

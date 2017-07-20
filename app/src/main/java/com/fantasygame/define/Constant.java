@@ -15,9 +15,16 @@ public class Constant {
 
     // Key Bundle
     public static final String POSITION = "position";
+<<<<<<< HEAD
     public static final String ITEM_SPORT = "item_sport";
 
     // Tab Pick
     public static final int TAB_SPORT = 0;
     public static final int TAB_STOCK = 1;
+=======
+
+    // Tab Pick
+    public static final int TAB_SPORT = 1;
+    public static final int TAB_STOCK = 2;
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
 }

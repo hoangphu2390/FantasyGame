@@ -3,6 +3,7 @@ package com.fantasygame.ui.register;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+<<<<<<< HEAD
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -10,13 +11,20 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+=======
+import android.widget.EditText;
+import android.widget.ImageButton;
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
 import android.widget.Toast;
 
 import com.fantasygame.R;
 import com.fantasygame.base.BaseActivity;
 import com.fantasygame.data.model.response.RegisterResponse;
 import com.fantasygame.define.Navigator;
+<<<<<<< HEAD
 import com.fantasygame.utils.PreferenceUtils;
+=======
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
 import com.fantasygame.utils.UsPhoneNumberFormatter;
 import com.fantasygame.utils.Utils;
 
@@ -46,6 +54,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     EditText edtAddress;
     @Bind(R.id.edtConfirmPass)
     EditText edtConfirmPass;
+<<<<<<< HEAD
     @Bind(R.id.ckbTerm)
     CheckBox ckbTerm;
     @Bind(R.id.progressBar)
@@ -55,6 +64,11 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
 
     RegisterPresenter presenter;
     String username, password, confirm_pwd, email, phone, address, display_name;
+=======
+
+    private RegisterPresenter presenter;
+    private String username, password, confirm_pwd, email, phone, address, display_name;
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,6 +76,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
         setContentView(R.layout.activity_sign_up);
         ButterKnife.bind(this);
 
+<<<<<<< HEAD
         ckbTerm.setButtonDrawable(R.drawable.ckb_blank);
         ckbTerm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -70,6 +85,8 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
             }
         });
 
+=======
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
         UsPhoneNumberFormatter addLineNumberFormatter = new UsPhoneNumberFormatter(
                 new WeakReference<EditText>(edtPhone));
         edtPhone.addTextChangedListener(addLineNumberFormatter);
@@ -79,28 +96,45 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
 
     @Override
     public void hideLoadingUI() {
+<<<<<<< HEAD
         progressBar.setVisibility(View.GONE);
+=======
+        hideProgressDialog();
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
     }
 
     @Override
     public void showLoadingUI() {
+<<<<<<< HEAD
         progressBar.setVisibility(View.VISIBLE);
+=======
+        loadingProgressDialog();
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
     }
 
     @Override
     public void showErrorLoadingUI(@NonNull Throwable throwable) {
+<<<<<<< HEAD
         hideLoadingUI();
         Utils.showToast(throwable.getMessage());
+=======
+        hideProgressDialog();
+        Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_SHORT).show();
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
     }
 
     @Override
     public void showResultRegister(RegisterResponse response) {
         Utils.showToast(response.message);
+<<<<<<< HEAD
         btnSignUp.setEnabled(true);
         if (response.result) {
             PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_LogInLogOutCheck, "login");
             Navigator.openMainActivity(RegisterActivity.this);
         }
+=======
+        if (response.result) Navigator.openMainActivity(RegisterActivity.this);
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
     }
 
     private boolean checkConditionRegister() {
@@ -149,9 +183,12 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
             edtConfirmPass.setError(getString(R.string.error_confirm_pwd_not_same_pwd));
             edtConfirmPass.requestFocus();
             isError = true;
+<<<<<<< HEAD
         } else if (!ckbTerm.isChecked()) {
             Utils.showToast(getString(R.string.agree_the_term_and_policy));
             isError = true;
+=======
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
         }
         return isError;
     }
@@ -164,9 +201,12 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     @OnClick(R.id.btnSignUp)
     public void clickSignUp() {
         if (checkConditionRegister()) return;
+<<<<<<< HEAD
         if (Utils.isCheckShowSoftKeyboard(this))
             Utils.hideSoftKeyboard(this);
         btnSignUp.setEnabled(false);
+=======
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
         presenter.register(username, password, display_name, email, phone, address);
     }
 

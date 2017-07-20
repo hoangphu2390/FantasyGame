@@ -1,6 +1,7 @@
 package com.fantasygame.api;
 
 
+<<<<<<< HEAD
 import com.fantasygame.data.model.response.FeatureResponse;
 import com.fantasygame.data.model.response.FinishTeamResponse;
 import com.fantasygame.data.model.response.HowToPlayResponse;
@@ -13,6 +14,13 @@ import com.fantasygame.data.model.response.SportResponse;
 import com.fantasygame.data.model.response.TeamResponse;
 import com.fantasygame.data.model.response.TieBreakerResponse;
 import com.fantasygame.data.model.response.UserWinnerResponse;
+=======
+import com.fantasygame.data.model.response.LoginResponse;
+import com.fantasygame.data.model.response.LogoutResponse;
+import com.fantasygame.data.model.response.RegisterResponse;
+import com.fantasygame.data.model.response.SportResponse;
+import com.fantasygame.data.model.response.TeamResponse;
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
 
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
@@ -30,6 +38,7 @@ public interface ServerAPI {
     String PATH_LOGOUT = "user/sign-out";
     String PATH_GET_LIST_TEAM = "team/featured";
     String PATH_GET_LIST_SPORT = "sport";
+<<<<<<< HEAD
     String PATH_GET_LIST_ALL_WINNER = "game/weeky";
     String PATH_GET_HOW_TO_PLAY = "game/latest";
     String PATH_GET_MATCHES = "match/latest?limit=5&sport=nfl";
@@ -37,15 +46,22 @@ public interface ServerAPI {
     String PATH_GET_LIST_TEAM_SELECT = "game/teams";
     String PATH_GET_TIE_BREAKER = "tie-breaker/get";
     String PATH_GAME_FINISH = "game/finish";
+=======
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
 
     @FormUrlEncoded
     @POST(PATH_LOGIN)
     Observable<LoginResponse> login(@Field("username") String username,
                                     @Field("password") String pwd);
 
+<<<<<<< HEAD
     @FormUrlEncoded
     @POST(PATH_LOGOUT)
     Observable<LogoutResponse> logout(@Field("api_token") String api_token);
+=======
+    @POST(PATH_LOGOUT)
+    Observable<LogoutResponse> logout();
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
 
     @FormUrlEncoded
     @POST(PATH_REGISTER)
@@ -62,6 +78,7 @@ public interface ServerAPI {
 
     @GET(PATH_GET_LIST_SPORT)
     Observable<SportResponse> getListSport();
+<<<<<<< HEAD
 
     @GET(PATH_GET_LIST_ALL_WINNER)
     Observable<UserWinnerResponse> getAllWinner();
@@ -101,4 +118,6 @@ public interface ServerAPI {
                                                 @Field("selected_teams[3]") String selected_team_four,
                                                 @Field("selected_teams[4]") String selected_team_five,
                                                 @Field("api_token") String api_token);
+=======
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
 }

@@ -21,6 +21,10 @@ public class Navigator {
     public static void openRegisterActivity(Activity activity) {
         Intent intent = new Intent(activity, RegisterActivity.class);
         activity.startActivity(intent);
+<<<<<<< HEAD
+=======
+        activity.finish();
+>>>>>>> ad8485e904013f72180e461e82a80c8da759f7cd
     }
 
     public static void openLoginActivity(Activity activity) {
