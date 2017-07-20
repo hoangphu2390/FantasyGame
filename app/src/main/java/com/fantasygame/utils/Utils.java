@@ -13,6 +13,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Handler;
+import android.support.v4.app.FragmentManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -23,9 +24,19 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.fantasygame.R;
+import com.fantasygame.define.FantatsyGame;
+import com.squareup.picasso.Picasso;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -205,5 +216,38 @@ public abstract class Utils {
     //Check email is valid
     public static boolean isValidEmail(String email) {
         return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    public static void showToast(String content){
+        Toast.makeText(FantatsyGame.getInstance(), content, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void loadAvatarFromURL(Context context, String image_path, CircleImageView imageView) {
+        try {
+            Picasso.with(context).load(image_path)
+                    .placeholder(R.drawable.uploadpic)
+                    .error(R.drawable.uploadpic).fit().centerInside().into(imageView);
+        } catch (IllegalArgumentException ex) {
+
+        }
+    }
+
+    public static void loadImageFromURL(Context context, String image_path, ImageView imageView) {
+        Picasso.with(context).load(image_path)
+                .placeholder(R.color.gray_D3)
+                .error(R.color.gray_D3).fit().centerInside().into(imageView);
+    }
+
+    public static String formatDateTime(String old_fd, String new_fd, String dateFormate) {
+        SimpleDateFormat sdf = new SimpleDateFormat(old_fd);
+        Date d = null;
+        try {
+            d = sdf.parse(dateFormate);
+            sdf.applyPattern(new_fd);
+            return sdf.format(d);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }

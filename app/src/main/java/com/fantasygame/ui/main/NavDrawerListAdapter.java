@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fantasygame.R;
@@ -48,6 +49,8 @@ public class NavDrawerListAdapter extends BaseAdapter {
         }
         TextView txtTitle = (TextView) convertView.findViewById(R.id.title);
         txtTitle.setText(navDrawerItems.get(position).getTitle());
+        ImageView icon = (ImageView) convertView.findViewById(R.id.icon_menu);
+        icon.setImageResource(navDrawerItems.get(position).getIcon());
         return convertView;
     }
 }

@@ -5,21 +5,43 @@
 
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
-        <item>Home</item>
-        <item>Account Profile</item>
-        <item>Log Out</item>
+        <item>Game status</item>
+        <item>Setting</item>
+        <item>Matches</item>
+        <item>Logout</item>
     </string-array>
 
     <!-- edittext show messenger -->
     <string name="show_error_email_invalid">Email invalid</string>
     <string name="show_error_email">Please enter email</string>
+    <string name="show_error_username">Please enter username</string>
     <string name="show_error_password">Please enter password</string>
+    <string name="show_error_phone">Please enter phone</string>
+    <string name="show_error_address">Please enter address</string>
+    <string name="show_error_display_name">Please enter display name</string>
     <string name="error_login">Incorrect email and/or password.</string>
+    <string name="error_confirm_pwd_not_same_pwd">Confirm password not same password</string>
     <string name="error_connect_server">Error connect server. Please check network state.</string>
+    <string name="agree_the_term_and_policy">Please agree the Term and Policy</string>
+    <string name="logout_successful">Logout successful</string>
 
     <!-- Sign in -->
     <string name="email">Email</string>
+    <string name="username">Username</string>
     <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="read_term_and_policy">I have read the Term and Policy</string>
+    <string name="display_name">Display Name</string>
+    <string name="phone">Phone number</string>
+    <string name="address">Address</string>
     <string name="forgot_pass"><u>Forgot password?</u></string>
+    <string name="sign_up"><u>Sign up</u></string>
     <string name="btnSignup">Sign up</string>
+    <string name="btnSignin">Sign in</string>
+    <string name="btnContinue">Continue</string>
+    <string name="btnHome">Home</string>
+    <string name="btnPlayNow">Play Now</string>
+    <string name="sport">sport</string>
+    <string name="stock">stock</string>
+    <string name="winner_this_week">%s WINNER</string>
 </resources>

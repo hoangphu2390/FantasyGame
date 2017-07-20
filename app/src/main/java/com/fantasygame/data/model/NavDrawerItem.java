@@ -3,16 +3,25 @@ package com.fantasygame.data.model;
 public class NavDrawerItem {
 	
 	private String title;
-	
+	private int icon;
+
+	public int getIcon() {
+		return icon;
+	}
+
+	public void setIcon(int icon) {
+		this.icon = icon;
+	}
+
 	private String count = "0";
 	// boolean to set visiblity of the counter
 	private boolean isCounterVisible = false;
 	
 	public NavDrawerItem(){}
 
-	public NavDrawerItem(String title){
+	public NavDrawerItem(String title, int icon_resource){
 		this.title = title;
-		
+		this.icon = icon_resource;
 	}
 	
 	public NavDrawerItem(String title, boolean isCounterVisible, String count){

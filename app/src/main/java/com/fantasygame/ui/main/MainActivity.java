@@ -1,27 +1,33 @@
 package com.fantasygame.ui.main;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.fantasygame.R;
 import com.fantasygame.data.model.NavDrawerItem;
+import com.fantasygame.data.model.response.LogoutResponse;
+import com.fantasygame.define.Navigator;
 import com.fantasygame.service.ConnectionService;
-import com.fantasygame.ui.home.HomeFragment;
-import com.fantasygame.ui.profile.ProfileFragment;
+import com.fantasygame.ui.matches.MatchesFragment;
+import com.fantasygame.ui.setting.SettingFragment;
+import com.fantasygame.ui.sport.SportFragment;
+import com.fantasygame.utils.PreferenceUtils;
 import com.fantasygame.utils.Utils;
 
 import java.util.ArrayList;
@@ -30,7 +36,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends Activity implements ConnectionService.postResultConnection {
+public class MainActivity extends FragmentActivity implements MainView, ConnectionService.postResultConnection {
+
+    final int[] Menu_Icons = {R.drawable.info, R.drawable.setting, R.drawable.ic_matches, R.drawable.logout};
 
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
@@ -46,17 +54,20 @@ public class MainActivity extends Activity implements ConnectionService.postResu
     TextView tvConnection;
     @Bind(R.id.frame_container)
     FrameLayout frame_container;
+    @Bind(R.id.progressBar)
+    ProgressBar progressBar;
 
-    private ActionBarDrawerToggle mDrawerToggle;
-    private CharSequence mDrawerTitle;
-    private String[] navMenuTitles;
-    private CharSequence mTitle;
-    private ArrayList<NavDrawerItem> navDrawerItems;
-    private NavDrawerListAdapter adapter;
-    private boolean doubleBackToExitPressedOnce;
-    public static MainActivity self;
-    private ConnectionService connectionService;
-
+    ActionBarDrawerToggle mDrawerToggle;
+    CharSequence mDrawerTitle;
+    String[] navMenuTitles;
+    CharSequence mTitle;
+    ArrayList<NavDrawerItem> navDrawerItems;
+    NavDrawerListAdapter adapter;
+    boolean doubleBackToExitPressedOnce;
+    static MainActivity self;
+    ConnectionService connectionService;
+    MainPresenter presenter;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,12 +80,16 @@ public class MainActivity extends Activity implements ConnectionService.postResu
 
     private void initComponent(Bundle savedInstanceState) {
         self = this;
+        progressDialog = new ProgressDialog(this);
+        presenter = new MainPresenter();
+        presenter.bindView(this);
+
         mTitle = mDrawerTitle = getTitle();
         navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
         navDrawerItems = new ArrayList<NavDrawerItem>();
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[0]));
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[1]));
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2]));
+        for (int i = 0; i < Menu_Icons.length; i++) {
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[i], Menu_Icons[i]));
+        }
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
 
         adapter = new NavDrawerListAdapter(getApplicationContext(), navDrawerItems);
@@ -99,6 +114,30 @@ public class MainActivity extends Activity implements ConnectionService.postResu
         }
     }
 
+    @Override
+    public void hideLoadingUI() {
+        progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showLoadingUI() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showErrorLoadingUI(@NonNull Throwable throwable) {
+        hideLoadingUI();
+        Utils.showToast(throwable.getMessage());
+    }
+
+    @Override
+    public void showResultLogout(LogoutResponse response) {
+        if (!response.result) return;
+        Utils.showToast(getString(R.string.logout_successful));
+        PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_LogInLogOutCheck, "logout");
+        Navigator.openLoginActivity(MainActivity.this);
+    }
+
     private class SlideMenuClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -113,18 +152,24 @@ public class MainActivity extends Activity implements ConnectionService.postResu
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new HomeFragment();
+                fragment = new SportFragment();
                 break;
             case 1:
-                fragment = new ProfileFragment();
+                fragment = new SettingFragment();
                 break;
             case 2:
+                fragment = new MatchesFragment();
+                break;
+            case 3:
+                String api_token = PreferenceUtils.getFromPrefs(this, PreferenceUtils.PREFS_ApiToken, "");
+                if (api_token != null && !api_token.isEmpty())
+                    presenter.logout(api_token);
                 break;
             default:
                 break;
         }
         if (fragment != null) {
-            FragmentManager fragmentManager = getFragmentManager();
+            FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).addToBackStack(null)
                     .commit();
             mDrawerLayout.closeDrawer(mDrawerList);
@@ -142,7 +187,7 @@ public class MainActivity extends Activity implements ConnectionService.postResu
             System.exit(1);
         }
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+        Utils.showToast("Please click BACK again to exit");
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -165,10 +210,7 @@ public class MainActivity extends Activity implements ConnectionService.postResu
 
     @Override
     public void postResultConnection(boolean isConnection) {
-        Fragment currentFragment = getFragmentManager().findFragmentById(R.id.frame_container);
-        if (currentFragment instanceof HomeFragment) {
-            tvConnection.setVisibility(isConnection ? View.GONE : View.VISIBLE);
-        }
+
     }
 
     @Override
@@ -192,11 +234,11 @@ public class MainActivity extends Activity implements ConnectionService.postResu
             mDrawerLayout.closeDrawer(mDrawerList);
         }
 
-        Fragment currentFragment = getFragmentManager().findFragmentById(R.id.frame_container);
-        if (currentFragment instanceof HomeFragment) {
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.frame_container);
+        if (currentFragment instanceof SportFragment) {
             onClickBack();
         } else {
-            FragmentManager fm = getFragmentManager();
+            FragmentManager fm = getSupportFragmentManager();
             fm.popBackStack();
         }
     }
@@ -228,7 +270,7 @@ public class MainActivity extends Activity implements ConnectionService.postResu
     public void onClickMainBack() {
         if (Utils.isCheckShowSoftKeyboard(MainActivity.self))
             Utils.hideSoftKeyboard(MainActivity.self);
-        FragmentManager fm = getFragmentManager();
+        FragmentManager fm = getSupportFragmentManager();
         fm.popBackStack();
     }
 }

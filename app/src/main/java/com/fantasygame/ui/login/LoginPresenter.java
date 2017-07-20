@@ -2,8 +2,8 @@ package com.fantasygame.ui.login;
 
 import com.fantasygame.api.ServerAPI;
 import com.fantasygame.base.Presenter;
-import com.fantasygame.data.model.User;
 import com.fantasygame.define.Dependencies;
+
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -31,9 +31,8 @@ public class LoginPresenter extends Presenter<LoginView> {
                 .subscribe(response -> {
                     if (view != null) {
                         try {
-                            User user = new User();
                             view.hideLoadingUI();
-                            view.showLoginSuccessful(user, response.message);
+                            view.showResultLogin(response);
                         } catch (Exception ex) {
                         }
                     }

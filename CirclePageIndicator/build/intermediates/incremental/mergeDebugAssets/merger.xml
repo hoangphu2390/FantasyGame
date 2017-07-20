@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\App\FantasyGame\CirclePageIndicator\src\main\assets"/><source path="D:\App\FantasyGame\CirclePageIndicator\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="D:\App\FantasyGame\CirclePageIndicator\src\debug\assets"/></dataSet></merger>

@@ -8,6 +8,7 @@
     <dimen name="margin_distance_5dp">5dp</dimen>
     <dimen name="margin_distance_7dp">7dp</dimen>
     <dimen name="margin_distance_10dp">10dp</dimen>
+    <dimen name="margin_distance_12dp">12dp</dimen>
     <dimen name="margin_distance_15dp">15dp</dimen>
     <dimen name="margin_distance_20dp">20dp</dimen>
     <dimen name="margin_distance_25dp">25dp</dimen>
@@ -56,6 +57,7 @@
     <dimen name="text_size_36">32sp</dimen>
     <dimen name="text_size_38">38sp</dimen>
     <dimen name="text_size_40">40sp</dimen>
+    <dimen name="text_size_50">50sp</dimen>
 
     <!-- width button -->
     <dimen name="width_button_normal">60dp</dimen>
