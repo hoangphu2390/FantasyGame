@@ -22,7 +22,7 @@ public class SettingFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         MainActivity main = new MainActivity();
-        main.settestMain(getActivity(), "Profile");
+        main.settestMain(getActivity(), "SETTING");
         main.showBack(getActivity());
     }
 }

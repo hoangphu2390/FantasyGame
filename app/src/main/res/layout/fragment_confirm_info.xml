@@ -84,10 +84,10 @@
 
 
                         <TextView
+                            android:id="@+id/tv_question"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
-                            android:text="Enter the total number of points that all of your teams will score :"
                             android:textColor="@color/white"
                             android:textSize="16sp" />
 

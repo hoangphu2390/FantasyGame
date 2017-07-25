@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_team"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/logo_team_1" />
+
+        <TextView
+            android:id="@+id/tv_team_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Mariners"
+            android:textColor="@color/gray_C3"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_team_rank"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/bg_red_radius_10"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_12"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/gray_4b" />
+</LinearLayout>

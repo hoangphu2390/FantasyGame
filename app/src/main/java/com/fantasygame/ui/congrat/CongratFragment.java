@@ -5,13 +5,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.text.Html;
 import android.view.View;
+import android.widget.TextView;
 
 import com.fantasygame.R;
 import com.fantasygame.base.BaseFragment;
 import com.fantasygame.ui.matches.MatchesFragment;
 import com.fantasygame.ui.sport.SportFragment;
 
+import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
@@ -20,7 +23,10 @@ import butterknife.OnClick;
 
 public class CongratFragment extends BaseFragment {
 
-    String tie_breaker_id;
+    @Bind(R.id.tv_congratulation)
+    TextView tv_congratulation;
+
+    String tie_breaker_id, congratulation;
 
     @Override
     protected int getLayoutId() {
@@ -34,6 +40,10 @@ public class CongratFragment extends BaseFragment {
         if (getArguments() != null) {
             if (getArguments().containsKey("tie_breaker_id"))
                 tie_breaker_id = getArguments().getString("tie_breaker_id");
+            if (getArguments().containsKey("congratulation")) {
+                congratulation = getArguments().getString("congratulation");
+                tv_congratulation.setText(Html.fromHtml(congratulation));
+            }
         }
     }
 

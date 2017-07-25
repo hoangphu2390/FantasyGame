@@ -125,16 +125,11 @@ public class TabMatchesFragment extends BaseFragment implements MatchesView, Swi
 
     @Override
     public void showResultGetMatches(MatchesResponse response) {
-        Activity activity = getActivity();
-        if (activity != null) {
-            activity.runOnUiThread(() -> {
-                if (refreshLayout != null) {
-                    refreshLayout.setRefreshing(false);
-                    matches = response.data;
-                    matchesAdapter.setDataSource(matches);
-                    matchesAdapter.notifyDataSetChanged();
-                }
-            });
+        if (refreshLayout != null) {
+            refreshLayout.setRefreshing(false);
+            matches = response.data;
+            matchesAdapter.setDataSource(matches);
+            matchesAdapter.notifyDataSetChanged();
         }
     }
 

@@ -41,7 +41,7 @@ public class TieBreakerFragment extends BaseFragment implements TieBreakerView {
     ProgressBar progressBar;
 
     TieBreakerPresenter presenter;
-    String tie_breaker_id;
+    String tie_breaker_id, question;
     Parcelable parcelable;
 
     @Override
@@ -81,6 +81,8 @@ public class TieBreakerFragment extends BaseFragment implements TieBreakerView {
         bundle.putString("tie_breaker", content);
         bundle.putString("game_id", getArguments().getString("game_id"));
         bundle.putString("price", getArguments().getString("price"));
+        bundle.putString("question", question);
+        bundle.putString("congratulation", getArguments().getString("congratulation"));
         fragment.setArguments(bundle);
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).addToBackStack(null)
@@ -106,6 +108,7 @@ public class TieBreakerFragment extends BaseFragment implements TieBreakerView {
     @Override
     public void showResultGetTieBreaker(@NonNull TieBreakerResponse response) {
         if (!response.result) return;
-        tv_question.setText(response.data.question);
+        question = response.data.question;
+        tv_question.setText(question);
     }
 }

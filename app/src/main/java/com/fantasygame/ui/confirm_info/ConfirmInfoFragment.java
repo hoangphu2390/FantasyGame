@@ -22,7 +22,10 @@ import com.fantasygame.utils.Utils;
 
 import org.parceler.Parcels;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -33,12 +36,12 @@ import butterknife.OnClick;
 
 public class ConfirmInfoFragment extends BaseFragment implements ConfirmInfoView {
 
-    final int MAX_NUMBER_TEAM = 5;
-
     @Bind(R.id.rv_teams)
     RecyclerView rv_teams;
     @Bind(R.id.tv_tie_breaker)
     TextView tv_tie_breaker;
+    @Bind(R.id.tv_question)
+    TextView tv_question;
     @Bind(R.id.tv_price)
     TextView tv_price;
     @Bind(R.id.progressBar)
@@ -46,7 +49,7 @@ public class ConfirmInfoFragment extends BaseFragment implements ConfirmInfoView
 
     ConfirmTeamAdapter adapter;
     List<Team> teams;
-    String content_tie_breaker, price, game_id;
+    String content_tie_breaker, price, game_id, question;
     ConfirmInfoPresenter presenter;
 
     @Override
@@ -70,6 +73,9 @@ public class ConfirmInfoFragment extends BaseFragment implements ConfirmInfoView
         if (getArguments() != null && getArguments().containsKey("game_id")) {
             game_id = getArguments().getString("game_id");
         }
+        if (getArguments() != null && getArguments().containsKey("question")) {
+            question = getArguments().getString("question");
+        }
         setupUI();
         presenter = new ConfirmInfoPresenter();
         presenter.bindView(this);
@@ -88,14 +94,18 @@ public class ConfirmInfoFragment extends BaseFragment implements ConfirmInfoView
         rv_teams.setAdapter(adapter);
         adapter.setDataSource(teams);
         adapter.notifyDataSetChanged();
+        tv_question.setText(question);
     }
 
     @OnClick(R.id.btnFinish)
     public void clickFinish() {
-        int add_number_team = MAX_NUMBER_TEAM - teams.size();
-        if (add_number_team > 0) addTeams(add_number_team);
         String api_token = PreferenceUtils.getFromPrefs(self, PreferenceUtils.PREFS_ApiToken, "");
-        presenter.betTeams(game_id, content_tie_breaker, teams, api_token);
+
+        TreeMap<String, String> mapQuery = new TreeMap<>();
+        for (int i = 0; i < teams.size(); i++) {
+            mapQuery.put("selected_teams[" + i + "]", teams.get(i).code);
+        }
+        presenter.betTeams(game_id, content_tie_breaker, api_token, mapQuery);
     }
 
     @Override
@@ -118,17 +128,12 @@ public class ConfirmInfoFragment extends BaseFragment implements ConfirmInfoView
     public void showResultPostSelectTeams(FinishTeamResponse response) {
         if (response.result) {
             Fragment fragment = new CongratFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("congratulation", getArguments().getString("congratulation"));
+            fragment.setArguments(bundle);
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).addToBackStack(null)
                     .commit();
-        }
-    }
-
-    private void addTeams(int add_number_team) {
-        for (int i = 0; i < add_number_team; i++) {
-            Team team = new Team();
-            team.code = "";
-            teams.add(team);
         }
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:orientation="vertical">
@@ -10,4 +10,53 @@
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         android:src="@drawable/demo_winner_01" />
-</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_distance_15dp"
+            android:background="@color/gray_80D3"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp">
+
+            <TextView
+                android:id="@+id/tv_team_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="James Smith"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_team_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_distance_2dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:text="James Smith is the most common full name..."
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_14"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>

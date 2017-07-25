@@ -27,6 +27,7 @@ import com.fantasygame.service.ConnectionService;
 import com.fantasygame.ui.matches.MatchesFragment;
 import com.fantasygame.ui.setting.SettingFragment;
 import com.fantasygame.ui.sport.SportFragment;
+import com.fantasygame.ui.teams.TeamsFragment;
 import com.fantasygame.utils.PreferenceUtils;
 import com.fantasygame.utils.Utils;
 
@@ -38,7 +39,7 @@ import butterknife.OnClick;
 
 public class MainActivity extends FragmentActivity implements MainView, ConnectionService.postResultConnection {
 
-    final int[] Menu_Icons = {R.drawable.info, R.drawable.setting, R.drawable.ic_matches, R.drawable.logout};
+    final int[] Menu_Icons = {R.drawable.info, R.drawable.setting, R.drawable.ic_matches, R.drawable.ic_teams, R.drawable.logout};
 
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
@@ -161,6 +162,9 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
                 fragment = new MatchesFragment();
                 break;
             case 3:
+                fragment = new TeamsFragment();
+                break;
+            case 4:
                 String api_token = PreferenceUtils.getFromPrefs(this, PreferenceUtils.PREFS_ApiToken, "");
                 if (api_token != null && !api_token.isEmpty())
                     presenter.logout(api_token);

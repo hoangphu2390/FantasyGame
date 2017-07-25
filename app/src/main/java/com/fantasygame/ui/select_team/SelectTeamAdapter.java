@@ -49,7 +49,7 @@ public class SelectTeamAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
 
-        view = inflter.inflate(R.layout.item_team, null);
+        view = inflter.inflate(R.layout.item_selected_team, null);
         TextView tv_team_name = (TextView) view.findViewById(R.id.tv_team_name);
         TextView tv_team_rank = (TextView) view.findViewById(R.id.tv_team_rank);
         CircleImageView iv_team_logo = (CircleImageView) view.findViewById(R.id.iv_team_logo);

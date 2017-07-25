@@ -19,27 +19,20 @@
 
 
     <TextView
+        android:id="@+id/tv_congratulation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding_distance_10dp"
+        android:layout_marginTop="@dimen/padding_distance_20dp"
+        android:gravity="center_horizontal"
         android:text="Congratulations"
         android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:gravity="center_horizontal"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
-        android:textColor="@color/white"
-        android:textSize="18sp" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
     <Button
         android:id="@+id/btnHome"
@@ -51,7 +44,7 @@
         android:layout_marginTop="@dimen/margin_distance_70dp"
         android:background="@drawable/bg_btn_app"
         android:text="@string/btnHome"
-        android:textSize="18sp"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="18sp" />
 
 </LinearLayout>

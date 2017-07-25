@@ -19,11 +19,9 @@ import com.fantasygame.data.model.response.HowToPlayResponse;
 import com.fantasygame.data.model.response.UserWinnerResponse;
 import com.fantasygame.data.model.response.UserWinnerResponse.Datum;
 import com.fantasygame.listener.ContinueSelectTeamListener;
-import com.fantasygame.ui.select_team.Select_3_Team_Fragment;
-import com.fantasygame.ui.select_team.Select_4_Team_Fragment;
-import com.fantasygame.ui.select_team.Select_5_Team_Fragment;
-import com.fantasygame.ui.sport.FeatureAdapter;
+import com.fantasygame.ui.select_team.SelectTeamFragment;
 import com.fantasygame.ui.sport.AllWinnersAdapter;
+import com.fantasygame.ui.sport.FeatureAdapter;
 import com.fantasygame.utils.CustomViewPager;
 import com.fantasygame.utils.DialogFactory;
 import com.fantasygame.utils.Utils;
@@ -207,21 +205,12 @@ public class DetailDetailSportFragment extends BaseFragment implements DetailSpo
         DialogFactory.createHowToPlayDialog(self, game, new ContinueSelectTeamListener() {
             @Override
             public void onContinueSelectTeam() {
-
-                Fragment fragment;
-                int number_option_team = Integer.parseInt(game.number_of_teams);
-
-                if (number_option_team == 3)
-                    fragment = new Select_3_Team_Fragment();
-                else if (number_option_team == 4)
-                    fragment = new Select_4_Team_Fragment();
-                else
-                    fragment = new Select_5_Team_Fragment();
-
+                Fragment fragment = new SelectTeamFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("game_id", game.id);
                 bundle.putString("price", game.price);
                 bundle.putString("tie_breaker_id", game.tie_breaker_id);
+                bundle.putString("congratulation", game.congratulation);
                 fragment.setArguments(bundle);
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).addToBackStack(null)
