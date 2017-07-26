@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.TreeMap;
 
 import butterknife.Bind;
@@ -44,6 +45,7 @@ public class SelectTeamFragment extends BaseFragment implements SelectTeamView {
     ProgressBar progressBar;
 
     List<Team> selected_teams;
+    List<Spinner> listSpinner;
     List<List<Team>> option_teams;
     TreeMap<String, Team> mapTeams;
     int num_option = 0;
@@ -64,6 +66,7 @@ public class SelectTeamFragment extends BaseFragment implements SelectTeamView {
         selected_teams = new ArrayList<>();
         option_teams = new ArrayList<>();
         mapTeams = new TreeMap<>();
+        listSpinner = new ArrayList<>();
 
         if (getArguments() != null) {
             if (getArguments().containsKey("game_id"))
@@ -143,6 +146,7 @@ public class SelectTeamFragment extends BaseFragment implements SelectTeamView {
             option_teams.add(teams);
             adapter = new SelectTeamAdapter(self, teams);
             spinner.setAdapter(adapter);
+            listSpinner.add(spinner);
 
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -157,5 +161,21 @@ public class SelectTeamFragment extends BaseFragment implements SelectTeamView {
                 }
             });
         }
+    }
+
+    @OnClick(R.id.btnRandom)
+    public void clickRandom() {
+        for (int i = 0; i < num_option; i++) {
+            Spinner spn = listSpinner.get(i);
+            int position = randInt(0, num_option);
+            if (position < spn.getCount())
+                listSpinner.get(i).setSelection(position);
+        }
+    }
+
+    private int randInt(int min, int max) {
+        Random rand = new Random();
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+        return randomNum;
     }
 }

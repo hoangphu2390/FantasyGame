@@ -9,15 +9,33 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:paddingBottom="20dp"
+        android:paddingBottom="30dp"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
-        android:paddingTop="60dp">
+        android:paddingTop="30dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/btnRandom"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_gravity="right"
+                android:background="@drawable/bg_red_radius_10"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_random" />
+            </LinearLayout>
+
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -28,8 +46,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="vertical">
-                </LinearLayout>
+                    android:orientation="vertical"></LinearLayout>
 
                 <ProgressBar
                     android:id="@+id/progressBar"
@@ -48,11 +65,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:background="@drawable/bg_btn_app"
-        android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
+        android:background="@drawable/bg_btn_app"
         android:text="@string/btnContinue"
         android:textColor="@color/white" />
 

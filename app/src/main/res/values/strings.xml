@@ -40,6 +40,7 @@
     <string name="btnSignup">Sign up</string>
     <string name="btnSignin">Sign in</string>
     <string name="btnContinue">Continue</string>
+    <string name="btnRandom">Random</string>
     <string name="btnHome">Home</string>
     <string name="btnPlayNow">Play Now</string>
     <string name="winner_this_week">%s WINNER</string>
