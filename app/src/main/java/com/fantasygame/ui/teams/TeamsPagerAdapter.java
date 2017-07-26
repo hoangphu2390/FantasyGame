@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.fantasygame.ui.teams.mvvm.MVVMTabTeamsFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +28,8 @@ public class TeamsPagerAdapter extends FragmentStatePagerAdapter {
         this.CodeSports = CodeSports;
         this.NameSports = NameSports;
         for (int i = 0; i < CodeSports.size(); i++)
-            fragmentList.add(TabTeamsFragment.newInstance(CodeSports.get(i)));
+//            fragmentList.add(TabTeamsFragment.newInstance(CodeSports.get(i)));
+            fragmentList.add(MVVMTabTeamsFragment.newInstance(CodeSports.get(i)));
         notifyDataSetChanged();
     }
 

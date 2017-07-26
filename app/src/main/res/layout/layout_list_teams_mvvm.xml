@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="mvvmteamsviewmodel"
+            type="com.fantasygame.ui.teams.mvvm.MVVMTeamsViewModel" />
+    </data>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/edtUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_distance_40dp"
+                    android:layout_marginRight="@dimen/margin_distance_40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_boder_white_radius"
+                    android:hint="@string/username"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:text="@={mvvmteamsviewmodel.firstName}"
+                    android:paddingBottom="@dimen/padding_distance_10dp"
+                    android:paddingLeft="@dimen/padding_distance_20dp"
+                    android:paddingRight="@dimen/padding_distance_20dp"
+                    android:paddingTop="@dimen/padding_distance_10dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="@dimen/text_size_14"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/edtPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_distance_40dp"
+                    android:layout_marginRight="@dimen/margin_distance_40dp"
+                    android:layout_marginTop="@dimen/margin_distance_20dp"
+                    android:background="@drawable/bg_boder_white_radius"
+                    android:hint="@string/password"
+                    android:imeOptions="actionDone"
+                    android:text="@={mvvmteamsviewmodel.lastName}"
+                    android:inputType="textPassword"
+                    android:paddingBottom="@dimen/padding_distance_10dp"
+                    android:paddingLeft="@dimen/padding_distance_20dp"
+                    android:paddingRight="@dimen/padding_distance_20dp"
+                    android:paddingTop="@dimen/padding_distance_10dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="@dimen/text_size_14"
+                    android:textStyle="italic" />
+
+                <Button
+                    android:id="@+id/btnSignIn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:onClick="@{() -> mvvmteamsviewmodel.buttonClicked()}"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="@dimen/margin_distance_30dp"
+                    android:background="@drawable/bg_btn_app"
+                    android:text="@string/btnSignin"
+                    android:textColor="@color/white" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_teams"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary"
+                    android:paddingTop="10dp"
+                    app:visibility="@{mvvmteamsviewmodel.teamsRecycler}"
+                    tools:listitem="@layout/item_teams_mvvm" />
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="@style/Widget.ProgressBar"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                app:visibility="@{mvvmteamsviewmodel.teamsProgress}" />
+        </FrameLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</layout>
+
