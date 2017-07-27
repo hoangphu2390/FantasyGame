@@ -27,7 +27,8 @@ public class MVVMTabTeamsFragment extends Fragment implements Observer, SwipeRef
 
     LayoutListTeamsMvvmBinding binding;
     MVVMTeamsViewModel teamsViewModel;
-    MVVMTeamsAdapter adapter;
+    //MVVMTeamsAdapter adapter;
+    MVVMTeamsAdapterViewModel adapter;
 
     String sport_code;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
@@ -61,7 +62,8 @@ public class MVVMTabTeamsFragment extends Fragment implements Observer, SwipeRef
 
     private void setupAdapter(RecyclerView rv_teams) {
         LinearLayoutManager llm = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        adapter = new MVVMTeamsAdapter(getActivity().getLayoutInflater());
+        //adapter = new MVVMTeamsAdapter(getActivity().getLayoutInflater());
+        adapter = new MVVMTeamsAdapterViewModel(getActivity().getLayoutInflater());
         rv_teams.setAdapter(adapter);
         rv_teams.setLayoutManager(llm);
         rv_teams.addOnScrollListener(new RecyclerView.OnScrollListener() {

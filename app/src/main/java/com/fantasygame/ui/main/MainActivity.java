@@ -76,7 +76,7 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initComponent(savedInstanceState);
-        initConnectionService();
+      //  initConnectionService();
     }
 
     private void initComponent(Bundle savedInstanceState) {
@@ -208,8 +208,8 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (connectionService == null) return;
-        connectionService.unregisterBroadcastConnection(this);
+//        if (connectionService == null) return;
+//        connectionService.unregisterBroadcastConnection(this);
     }
 
     @Override

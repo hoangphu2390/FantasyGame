@@ -250,4 +250,12 @@ public abstract class Utils {
         }
         return "";
     }
+
+    public static boolean isNetworkAvailable(Context context) {
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+    }
 }
