@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.fantasygame.R;
 import com.fantasygame.base.BaseActivity;
@@ -16,6 +17,7 @@ import com.fantasygame.define.Navigator;
 import com.fantasygame.ui.main.MainActivity;
 import com.fantasygame.utils.PreferenceUtils;
 import com.fantasygame.utils.Utils;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -34,9 +36,11 @@ public class LoginActivity extends BaseActivity implements LoginView {
     ProgressBar progressBar;
     @Bind(R.id.btnSignIn)
     Button btnSignIn;
+    @Bind(R.id.tv_create_account)
+    TextView tv_create_account;
 
     LoginPresenter presenter;
-    String username, password;
+    String username, password, contentIntent = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,12 @@ public class LoginActivity extends BaseActivity implements LoginView {
         setContentView(R.layout.activity_sign_in);
         ButterKnife.bind(this);
         setupPresenter();
+
+        if (getIntent() != null && getIntent().getStringExtra("authorized") != null) {
+            contentIntent = getIntent().getStringExtra("authorized");
+            tv_create_account.setVisibility(View.GONE);
+            return;
+        }
 
         String checklogin = PreferenceUtils.getFromPrefs(this, PreferenceUtils.PREFS_LogInLogOutCheck, "logout");
         if (checklogin.equals("login")) {
@@ -62,7 +72,10 @@ public class LoginActivity extends BaseActivity implements LoginView {
                 PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_ApiToken, api_token);
                 PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_LogInLogOutCheck, "login");
             }
-            Navigator.openMainActivity(LoginActivity.this);
+            if (contentIntent.isEmpty())
+                Navigator.openMainActivity(LoginActivity.this);
+            else
+                finish();
         }
     }
 

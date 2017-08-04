@@ -8,6 +8,7 @@ import com.fantasygame.data.model.response.LoginResponse;
 import com.fantasygame.data.model.response.LogoutResponse;
 import com.fantasygame.data.model.response.MatchesResponse;
 import com.fantasygame.data.model.response.RegisterResponse;
+import com.fantasygame.data.model.response.ResultResponse;
 import com.fantasygame.data.model.response.SelectTeamResponse;
 import com.fantasygame.data.model.response.SportResponse;
 import com.fantasygame.data.model.response.TeamResponse;
@@ -37,7 +38,8 @@ public interface ServerAPI {
     String PATH_GET_LIST_SPORT = "sport";
     String PATH_GET_LIST_ALL_WINNER = "game/weeky";
     String PATH_GET_HOW_TO_PLAY = "game/latest";
-    String PATH_GET_MATCHES = "match/latest?limit=5&sport=nfl";
+    String PATH_GET_MATCHES = "match/latest";
+    String PATH_GET_RESULT = "result";
     String PATH_GET_FEATURE = "team/featured";
     String PATH_GET_TEAM_BY_CODE = "team";
     String PATH_GET_LIST_TEAM_SELECT = "game/teams";
@@ -85,6 +87,9 @@ public interface ServerAPI {
     @GET(PATH_GET_MATCHES)
     Observable<MatchesResponse> getListMatches(@Query("limit") int limit,
                                                @Query("sport") String code_sport);
+
+    @GET(PATH_GET_RESULT)
+    Observable<ResultResponse> getListResults(@Query("sport") String code_sport);
 
     @GET(PATH_GET_FEATURE)
     Observable<FeatureResponse> getListFeature(@Query("page") int page,

@@ -14,7 +14,5 @@ import java.util.List;
  */
 
 public interface DetailSportView extends BaseView {
-    public void showResultGetAllWinner(@NonNull List<Datum> usersWinner);
     public void showResultGetHowToPlay(@NonNull HowToPlayResponse response, boolean isLoadMore);
-    public void showResultGetListFeature(@NonNull List<FeatureResponse.Datum> featureResponse);
 }

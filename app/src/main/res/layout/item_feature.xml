@@ -41,21 +41,6 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_16"
                 android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_team_city"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/margin_distance_2dp"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:lines="1"
-                android:text="James Smith is the most common full name..."
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_14"
-                android:textStyle="bold" />
-
         </LinearLayout>
 
     </LinearLayout>

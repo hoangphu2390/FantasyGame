@@ -9,4 +9,9 @@ import java.util.List;
 public class RegisterResponse {
     public boolean result;
     public String message;
+    public Data data;
+
+    public class Data{
+        public String api_token;
+    }
 }

@@ -30,9 +30,12 @@ import com.fantasygame.R;
 import com.fantasygame.define.FantatsyGame;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -87,11 +90,11 @@ public abstract class Utils {
         }
     }
 
-    public static void hideKeyboard(Activity context, View aView){
+    public static void hideKeyboard(Activity context, View aView) {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                InputMethodManager inputManager = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager inputManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputManager.hideSoftInputFromWindow(aView.getWindowToken(),
                         InputMethodManager.HIDE_NOT_ALWAYS);
             }
@@ -186,7 +189,7 @@ public abstract class Utils {
     public static Drawable getShapeDrawableColor(ImageView view, String color) {
         GradientDrawable drawable = (GradientDrawable) view.getBackground();
         if (drawable == null) {
-            drawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[] {Color.parseColor(color)});
+            drawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{Color.parseColor(color)});
         } else {
             drawable.setColor(Color.parseColor(color));
         }
@@ -218,7 +221,7 @@ public abstract class Utils {
         return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
-    public static void showToast(String content){
+    public static void showToast(String content) {
         Toast.makeText(FantatsyGame.getInstance(), content, Toast.LENGTH_SHORT).show();
     }
 
@@ -249,5 +252,11 @@ public abstract class Utils {
             e.printStackTrace();
         }
         return "";
+    }
+
+    public static String formatPoints(double points) {
+        DecimalFormat df;
+        df = new DecimalFormat("#.#", new DecimalFormatSymbols(Locale.US));
+        return df.format(points);
     }
 }

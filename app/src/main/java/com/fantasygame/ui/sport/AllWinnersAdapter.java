@@ -24,16 +24,9 @@ public class AllWinnersAdapter extends PagerAdapter {
     List<Datum> userWinners;
     LayoutInflater inflater;
 
-    public interface SelectedUserWinner {
-        void selectedUser(Datum userWinner);
-    }
-
-    SelectedUserWinner listener;
-
-    public AllWinnersAdapter(LayoutInflater inflater, List<Datum> userWinners, SelectedUserWinner listener) {
+    public AllWinnersAdapter(LayoutInflater inflater, List<Datum> userWinners) {
         this.inflater = inflater;
         this.userWinners = userWinners;
-        this.listener = listener;
     }
 
 
@@ -53,14 +46,6 @@ public class AllWinnersAdapter extends PagerAdapter {
         tv_user_winner_name.setText(userWinner.player);
         tv_user_winner_description.setText(userWinner.description);
         Utils.loadImageFromURL(view.getContext(), Constant.URL_ADDRESS_SERVER + userWinner.image, iv_user_winner);
-
-        iv_user_winner.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.selectedUser(userWinner);
-            }
-        });
-
         view.addView(layout);
         return layout;
     }

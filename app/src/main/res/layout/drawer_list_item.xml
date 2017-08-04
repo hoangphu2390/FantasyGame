@@ -14,10 +14,10 @@
 
         <ImageView
             android:id="@+id/icon_menu"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
+            android:scaleType="fitXY"
             android:src="@drawable/info" />
 
         <TextView

@@ -52,7 +52,7 @@ public class SelectTeamFragment extends BaseFragment implements SelectTeamView {
 
     SelectTeamAdapter adapter;
     SelectTeamPresenter presenter;
-    String game_id, tie_breaker_id;
+    String game_id, tie_breaker_id, game_name;
 
     @Override
     protected int getLayoutId() {
@@ -73,12 +73,16 @@ public class SelectTeamFragment extends BaseFragment implements SelectTeamView {
                 game_id = getArguments().getString("game_id");
             if (getArguments().containsKey("tie_breaker_id"))
                 tie_breaker_id = getArguments().getString("tie_breaker_id");
+            if (getArguments().containsKey("game_name"))
+                game_name = getArguments().getString("game_name");
         }
 
         presenter = new SelectTeamPresenter();
         presenter.bindView(this);
         presenter.getListFeature(Integer.valueOf(game_id));
 
+        self.settestMain(self, game_name);
+        self.showBack(self);
     }
 
     @OnClick(R.id.btnContinue)
@@ -125,7 +129,7 @@ public class SelectTeamFragment extends BaseFragment implements SelectTeamView {
         for (int i = 0; i < num_option; i++) {
             LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            lparams.setMargins(0, 30, 0, 5);
+            lparams.setMargins(5, 30, 0, 5);
             lparams.gravity = Gravity.CENTER_VERTICAL;
             TextView tv = new TextView(self);
             tv.setLayoutParams(lparams);
@@ -167,7 +171,7 @@ public class SelectTeamFragment extends BaseFragment implements SelectTeamView {
     public void clickRandom() {
         for (int i = 0; i < num_option; i++) {
             Spinner spn = listSpinner.get(i);
-            int position = randInt(0, num_option);
+            int position = randInt(0, spn.getCount());
             if (position < spn.getCount())
                 listSpinner.get(i).setSelection(position);
         }

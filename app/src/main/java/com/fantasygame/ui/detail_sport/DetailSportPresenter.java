@@ -24,34 +24,6 @@ public class DetailSportPresenter extends Presenter<DetailSportView> {
         serverAPI = Dependencies.getServerAPI();
     }
 
-    public void getAllWinnerOfItemSport(String sport_code) {
-        final DetailSportView view = view();
-        if (view != null) {
-            view.showLoadingUI();
-        }
-        subscriptions.add(serverAPI.getAllWinnerOfItemSport(STATUS, sport_code)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(response -> {
-                    if (view != null) {
-                        try {
-                            view.hideLoadingUI();
-                            if (response.result && response.data.size() > 0)
-                                view.showResultGetAllWinner(response.data);
-                            else
-                                getListFeature();
-                        } catch (Exception ex) {
-                        }
-                    }
-
-                }, throwable -> {
-                    if (view != null) {
-                        view.hideLoadingUI();
-                        view.showErrorLoadingUI(throwable);
-                    }
-                }));
-    }
-
     public void getHowToPlay(int page, int limit, String code_sport) {
         final DetailSportView view = view();
         if (view != null) {
@@ -85,32 +57,6 @@ public class DetailSportPresenter extends Presenter<DetailSportView> {
         }
         this.isLoadMore = isLoadMore;
         getHowToPlay(currentPage, LIMIT_PAGE, code_sport);
-    }
-
-    public void getListFeature() {
-        final DetailSportView view = view();
-        if (view != null) {
-            view.showLoadingUI();
-        }
-        subscriptions.add(serverAPI.getListFeature(page, limit)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(response -> {
-                    if (view != null) {
-                        try {
-                            view.hideLoadingUI();
-                            if (response.result)
-                                view.showResultGetListFeature(response.data);
-                        } catch (Exception ex) {
-                        }
-                    }
-
-                }, throwable -> {
-                    if (view != null) {
-                        view.hideLoadingUI();
-                        view.showErrorLoadingUI(throwable);
-                    }
-                }));
     }
 }
 

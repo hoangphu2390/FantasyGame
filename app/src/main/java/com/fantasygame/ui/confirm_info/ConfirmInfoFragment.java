@@ -1,5 +1,6 @@
 package com.fantasygame.ui.confirm_info;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -16,6 +17,7 @@ import com.fantasygame.R;
 import com.fantasygame.base.BaseFragment;
 import com.fantasygame.data.model.response.FinishTeamResponse;
 import com.fantasygame.data.model.response.SelectTeamResponse.Team;
+import com.fantasygame.define.Navigator;
 import com.fantasygame.ui.congrat.CongratFragment;
 import com.fantasygame.utils.PreferenceUtils;
 import com.fantasygame.utils.Utils;
@@ -134,6 +136,13 @@ public class ConfirmInfoFragment extends BaseFragment implements ConfirmInfoView
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).addToBackStack(null)
                     .commit();
+
+        } else if (!response.result && response.message.equals("Unauthorized")) {
+            Utils.showToast("Re-authenticate account.Please login again");
+            Navigator.openLoginActivityRefreshApiToken(self, "authorized");
+        } else if (!response.result && response.message.equals("Your balance is not enough to play this game.")) {
+            Utils.showToast("Your balance is not enough to play this game.");
         }
+
     }
 }

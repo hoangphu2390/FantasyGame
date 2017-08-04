@@ -14,6 +14,7 @@
         android:minHeight="?attr/actionBarSize"
         app:tabBackground="@color/white"
         app:tabGravity="fill"
+        app:tabMode="scrollable"
         app:tabIndicatorColor="@color/colorAccent"
         app:tabPaddingEnd="8dp"
         app:tabPaddingStart="8dp"

@@ -5,41 +5,41 @@
     android:background="@drawable/bg_sign_in"
     android:orientation="vertical">
 
-    <ScrollView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingBottom="30dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:paddingTop="30dp">
+        android:layout_weight="1">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:paddingBottom="30dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:paddingTop="30dp">
 
             <LinearLayout
-                android:id="@+id/btnRandom"
-                android:layout_width="50dp"
-                android:layout_height="30dp"
-                android:layout_gravity="right"
-                android:background="@drawable/bg_red_radius_10"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_random" />
-            </LinearLayout>
-
-
-            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/btnRandom"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="right"
+                    android:background="@drawable/bg_red_radius_10"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_random" />
+                </LinearLayout>
+
 
                 <LinearLayout
                     android:id="@+id/layout_select_team"
@@ -48,17 +48,17 @@
                     android:gravity="center"
                     android:orientation="vertical"></LinearLayout>
 
-                <ProgressBar
-                    android:id="@+id/progressBar"
-                    style="@style/Widget.ProgressBar"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center"
-                    android:visibility="gone" />
-            </FrameLayout>
+            </LinearLayout>
+        </ScrollView>
 
-        </LinearLayout>
-    </ScrollView>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.ProgressBar"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+    </FrameLayout>
 
     <Button
         android:id="@+id/btnContinue"

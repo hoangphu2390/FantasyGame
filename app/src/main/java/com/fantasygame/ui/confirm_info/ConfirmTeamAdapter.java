@@ -50,7 +50,9 @@ public class ConfirmTeamAdapter extends BaseAdapter<Team, BaseHolder> {
         public void bindData(Team team) {
             this.team = team;
             tv_team_name.setText(team.name);
-            tv_team_rank.setText("Rank :" + team.rank);
+            String rank = team.rank;
+            if (rank == null) rank = "0";
+            tv_team_rank.setText("Rank: " + rank);
             Utils.loadAvatarFromURL(itemView.getContext(), Constant.URL_ADDRESS_SERVER + team.logo, iv_team_logo);
         }
     }

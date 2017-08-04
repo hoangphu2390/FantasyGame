@@ -35,8 +35,7 @@ import butterknife.Bind;
  * Created by HP on 21/06/2017.
  */
 
-public class SportFragment extends BaseFragment implements SportView, AllWinnersAdapter.SelectedUserWinner,
-        SportAdapter.SelectSport {
+public class SportFragment extends BaseFragment implements SportView, SportAdapter.SelectSport {
 
     final int typeUserWinnerAdapter = 1;
     final int typeFeatureAdapter = 2;
@@ -80,7 +79,7 @@ public class SportFragment extends BaseFragment implements SportView, AllWinners
     private void setupPageAdapter(int typeAdapter) {
         int size = 0;
         if (typeAdapter == typeUserWinnerAdapter) {
-            allWinnersAdapter = new AllWinnersAdapter(self.getLayoutInflater(), usersWinner, this);
+            allWinnersAdapter = new AllWinnersAdapter(self.getLayoutInflater(), usersWinner);
             vp_all_winner.setAdapter(allWinnersAdapter);
             size = usersWinner.size();
         } else if (typeAdapter == typeFeatureAdapter) {
@@ -122,12 +121,6 @@ public class SportFragment extends BaseFragment implements SportView, AllWinners
             }, 500, 3000);
             _isHandler = true;
         }
-    }
-
-
-    @Override
-    public void selectedUser(Datum userWinner) {
-
     }
 
     @Override

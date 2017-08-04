@@ -99,6 +99,8 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
         btnSignUp.setEnabled(true);
         if (response.result) {
             PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_LogInLogOutCheck, "login");
+            if (response.data != null && response.data.api_token != null)
+                PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_ApiToken, response.data.api_token);
             Navigator.openMainActivity(RegisterActivity.this);
         }
     }

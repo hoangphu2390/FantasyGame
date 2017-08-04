@@ -25,6 +25,7 @@ import com.fantasygame.data.model.response.LogoutResponse;
 import com.fantasygame.define.Navigator;
 import com.fantasygame.service.ConnectionService;
 import com.fantasygame.ui.matches.MatchesFragment;
+import com.fantasygame.ui.result.ResultFragment;
 import com.fantasygame.ui.setting.SettingFragment;
 import com.fantasygame.ui.sport.SportFragment;
 import com.fantasygame.ui.teams.TeamsFragment;
@@ -39,7 +40,8 @@ import butterknife.OnClick;
 
 public class MainActivity extends FragmentActivity implements MainView, ConnectionService.postResultConnection {
 
-    final int[] Menu_Icons = {R.drawable.info, R.drawable.setting, R.drawable.ic_matches, R.drawable.ic_teams, R.drawable.logout};
+    final int[] Menu_Icons = {R.drawable.info, R.drawable.setting, R.drawable.ic_matches,
+            R.drawable.ic_teams, R.drawable.ic_result, R.drawable.logout};
 
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
@@ -165,9 +167,16 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
                 fragment = new TeamsFragment();
                 break;
             case 4:
+                fragment = new ResultFragment();
+                break;
+            case 5:
                 String api_token = PreferenceUtils.getFromPrefs(this, PreferenceUtils.PREFS_ApiToken, "");
-                if (api_token != null && !api_token.isEmpty())
-                    presenter.logout(api_token);
+                if (api_token != null && !api_token.isEmpty()){
+                    Utils.showToast(getString(R.string.logout_successful));
+                    PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_LogInLogOutCheck, "logout");
+                    Navigator.openLoginActivity(MainActivity.this);
+                }
+                  //  presenter.logout(api_token);
                 break;
             default:
                 break;

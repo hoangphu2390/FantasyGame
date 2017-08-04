@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.fantasygame.R;
 import com.fantasygame.ui.main.MainActivity;
 
 import butterknife.ButterKnife;
@@ -21,7 +20,6 @@ import butterknife.ButterKnife;
 public abstract class BaseFragment extends Fragment {
 
     protected abstract int getLayoutId();
-    private ProgressDialog progressDialog;
     protected static MainActivity self;
 
     @Override
@@ -34,7 +32,6 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        progressDialog = new ProgressDialog(getActivity());
     }
 
     @Nullable
@@ -43,16 +40,5 @@ public abstract class BaseFragment extends Fragment {
         View view = inflater.inflate(getLayoutId(), container, false);
         ButterKnife.bind(this, view);
         return view;
-    }
-
-    protected void loadingProgressDialog() {
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage(getString(R.string.please_wait));
-        progressDialog.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
-        progressDialog.show();
-    }
-
-    protected void hideProgressDialog() {
-        progressDialog.dismiss();
     }
 }

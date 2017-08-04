@@ -57,7 +57,9 @@ public class TeamsAdapter extends BaseAdapter<Datum, BaseHolder> {
         public void bindData(Datum teams) {
             this.teams = teams;
             tv_team_name.setText(teams.name);
-            tv_team_rank.setText("Rank: " + teams.rank);
+            String rank = teams.rank;
+            if (rank == null) rank = "0";
+            tv_team_rank.setText("Rank: " + rank);
             Utils.loadAvatarFromURL(itemView.getContext(), Constant.URL_ADDRESS_SERVER + teams.image, iv_team);
         }
 

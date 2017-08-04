@@ -28,4 +28,10 @@ public class Navigator {
         activity.startActivity(intent);
         activity.finish();
     }
+
+    public static void openLoginActivityRefreshApiToken(Activity activity, String authorized) {
+        Intent intent = new Intent(activity, LoginActivity.class);
+        intent.putExtra("authorized", authorized);
+        activity.startActivity(intent);
+    }
 }

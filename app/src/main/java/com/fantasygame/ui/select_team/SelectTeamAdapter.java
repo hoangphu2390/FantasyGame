@@ -56,7 +56,9 @@ public class SelectTeamAdapter extends BaseAdapter {
 
         Team team = teams.get(position);
         tv_team_name.setText(team.name);
-        tv_team_rank.setText("Rank: " + team.rank);
+        String rank = team.rank;
+        if (rank == null) rank = "0";
+        tv_team_rank.setText("Rank: " + rank);
         Utils.loadAvatarFromURL(view.getContext(), Constant.URL_ADDRESS_SERVER + team.logo, iv_team_logo);
         return view;
     }
