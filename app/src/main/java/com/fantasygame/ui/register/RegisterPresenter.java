@@ -4,6 +4,8 @@ import com.fantasygame.api.ServerAPI;
 import com.fantasygame.base.Presenter;
 import com.fantasygame.define.Dependencies;
 
+import javax.inject.Inject;
+
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -15,6 +17,7 @@ public class RegisterPresenter extends Presenter<RegisterView> {
 
     ServerAPI serverAPI;
 
+    @Inject
     public RegisterPresenter() {
         serverAPI = Dependencies.getServerAPI();
     }

@@ -43,7 +43,6 @@ public class Presenter<V> {
             }
             subscriptions = null;
         }
-
         this.view = null;
     }
 

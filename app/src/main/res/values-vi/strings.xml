@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">"Trò chơi ảo thuật"</string>
+    <string name="msg_no_internet">"Không kết nối internet"</string>
+    <string name="please_wait">"Xin vui lòng chờ ..."</string>
+
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item>"Trạng thái trò chơi"</item>
+        <item>"Cài đặt"</item>
+        <item>"Trận đấu"</item>
+        <item>"Teams"</item>
+        <item>"Kết quả"</item>
+        <item>"Đăng xuất"</item>
+    </string-array>
+
+    <!-- edittext show messenger -->
+    <string name="show_error_email_invalid">"Email không hợp lệ"</string>
+    <string name="show_error_email">"Vui lòng nhập email"</string>
+    <string name="show_error_username">"Vui lòng nhập tên người dùng"</string>
+    <string name="show_error_password">"Xin vui lòng nhập mật khẩu"</string>
+    <string name="show_error_phone">"Vui lòng nhập điện thoại"</string>
+    <string name="show_error_address">"Vui lòng nhập địa chỉ"</string>
+    <string name="show_error_display_name">"Vui lòng nhập tên hiển thị"</string>
+    <string name="error_login">"Email và / hoặc mật khẩu không chính xác."</string>
+    <string name="error_confirm_pwd_not_same_pwd">"Xác nhận mật khẩu không giống mật khẩu"</string>
+    <string name="error_connect_server">"Lỗi kết nối máy chủ. Vui lòng kiểm tra trạng thái mạng."</string>
+    <string name="agree_the_term_and_policy">"Vui lòng đồng ý với Điều khoản và Chính sách"</string>
+    <string name="logout_successful">"Đăng xuất thành công"</string>
+
+    <!-- Sign in -->
+    <string name="email">"E-mail"</string>
+    <string name="username">"Tên đăng nhập"</string>
+    <string name="password">"Mật khẩu"</string>
+    <string name="confirm_password">"Xác nhận mật khẩu"</string>
+    <string name="read_term_and_policy">"Tôi đã đọc Điều khoản và Chính sách"</string>
+    <string name="display_name">"Tên Hiển Thị "</string>
+    <string name="phone">"Số điện thoại"</string>
+    <string name="address">"Địa chỉ"</string>
+    <string name="forgot_pass">"&lt;U&gt; Quên mật khẩu? &lt;/ U&gt;"</string>
+    <string name="sign_up">"&lt;U&gt; Đăng ký &lt;/ u&gt;"</string>
+    <string name="btnSignup">"Đăng ký "</string>
+    <string name="btnSignin">"Đăng nhập"</string>
+    <string name="btnContinue">"Tiếp tục"</string>
+    <string name="btnRandom">"Ngẫu nhiên "</string>
+    <string name="btnHome">"Trang chủ"</string>
+    <string name="btnPlayNow">"Bắt đầu chơi"</string>
+    <string name="winner_this_week">"%s WINNER"</string>
+    <string name="sport">"Thể thao:"</string>
+    <string name="stock">"Kho hàng"</string>
+    <string name="title_matches">Trận đấu</string>
+    <string name="title_sport">Thể Thao</string>
+</resources>

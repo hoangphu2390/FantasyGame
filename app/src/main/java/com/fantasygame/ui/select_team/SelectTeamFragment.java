@@ -30,6 +30,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.OnClick;
 
@@ -50,6 +52,7 @@ public class SelectTeamFragment extends BaseFragment implements SelectTeamView {
     TreeMap<String, Team> mapTeams;
     int num_option = 0;
 
+    @Inject
     SelectTeamAdapter adapter;
     SelectTeamPresenter presenter;
     String game_id, tie_breaker_id, game_name;

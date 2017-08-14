@@ -15,10 +15,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.akexorcist.localizationactivity.LocalizationDelegate;
+import com.akexorcist.localizationactivity.OnLocaleChangedListener;
 import com.fantasygame.R;
 import com.fantasygame.data.model.NavDrawerItem;
 import com.fantasygame.data.model.response.LogoutResponse;
@@ -38,7 +41,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends FragmentActivity implements MainView, ConnectionService.postResultConnection {
+public class MainActivity extends FragmentActivity implements MainView,
+        ConnectionService.postResultConnection, OnLocaleChangedListener {
 
     final int[] Menu_Icons = {R.drawable.info, R.drawable.setting, R.drawable.ic_matches,
             R.drawable.ic_teams, R.drawable.ic_result, R.drawable.logout};
@@ -47,6 +51,8 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
     DrawerLayout mDrawerLayout;
     @Bind(R.id.list_slidermenu)
     ListView mDrawerList;
+    @Bind(R.id.layout_menu)
+    LinearLayout layout_menu;
     @Bind(R.id.txt_drawyer_button)
     TextView txt_drawyer_button;
     @Bind(R.id.txt_mainbackbutton)
@@ -71,9 +77,16 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
     ConnectionService connectionService;
     MainPresenter presenter;
     ProgressDialog progressDialog;
+    String choiceLanguage;
+
+    LocalizationDelegate localizationDelegate = new LocalizationDelegate(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        localizationDelegate.addOnLocaleChangedListener(this);
+        localizationDelegate.onCreate(savedInstanceState);
+        localizationDelegate.setDefaultLanguage("en");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -141,6 +154,16 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
         Navigator.openLoginActivity(MainActivity.this);
     }
 
+    @Override
+    public void onBeforeLocaleChanged() {
+
+    }
+
+    @Override
+    public void onAfterLocaleChanged() {
+
+    }
+
     private class SlideMenuClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -171,12 +194,12 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
                 break;
             case 5:
                 String api_token = PreferenceUtils.getFromPrefs(this, PreferenceUtils.PREFS_ApiToken, "");
-                if (api_token != null && !api_token.isEmpty()){
+                if (api_token != null && !api_token.isEmpty()) {
                     Utils.showToast(getString(R.string.logout_successful));
                     PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_LogInLogOutCheck, "logout");
                     Navigator.openLoginActivity(MainActivity.this);
                 }
-                  //  presenter.logout(api_token);
+                //  presenter.logout(api_token);
                 break;
             default:
                 break;
@@ -185,7 +208,7 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).addToBackStack(null)
                     .commit();
-            mDrawerLayout.closeDrawer(mDrawerList);
+            mDrawerLayout.closeDrawer(layout_menu);
             mDrawerList.setItemChecked(position, true);
             mDrawerList.setSelection(position);
             setTitle(navMenuTitles[position]);
@@ -233,6 +256,7 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
         mDrawerToggle.syncState();
     }
 
+
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -272,10 +296,10 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
     public void onClickDrawyer() {
         if (Utils.isCheckShowSoftKeyboard(MainActivity.self))
             Utils.hideSoftKeyboard(MainActivity.self);
-        if (mDrawerLayout.isDrawerOpen(mDrawerList)) {
-            mDrawerLayout.closeDrawer(mDrawerList);
+        if (mDrawerLayout.isDrawerOpen(layout_menu)) {
+            mDrawerLayout.closeDrawer(layout_menu);
         } else {
-            mDrawerLayout.openDrawer(mDrawerList);
+            mDrawerLayout.openDrawer(layout_menu);
         }
     }
 
@@ -285,5 +309,21 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
             Utils.hideSoftKeyboard(MainActivity.self);
         FragmentManager fm = getSupportFragmentManager();
         fm.popBackStack();
+    }
+
+    @OnClick(R.id.ic_france)
+    public void choiceEnglish() {
+        localizationDelegate.setLanguage("fr");
+    }
+
+    @OnClick(R.id.ic_vi)
+    public void choiceVietnam() {
+        localizationDelegate.setLanguage("vi");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        localizationDelegate.onResume();
     }
 }

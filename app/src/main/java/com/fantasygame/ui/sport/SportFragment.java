@@ -29,6 +29,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import butterknife.Bind;
+import butterknife.BindString;
 
 
 /**
@@ -48,6 +49,8 @@ public class SportFragment extends BaseFragment implements SportView, SportAdapt
     CirclePageIndicator indicator;
     @Bind(R.id.progressBar)
     ProgressBar progressBar;
+    @BindString(R.string.title_sport)
+    String title_sport;
 
     List<Data> sports = new ArrayList<>();
     List<Datum> usersWinner = new ArrayList<>();
@@ -72,7 +75,7 @@ public class SportFragment extends BaseFragment implements SportView, SportAdapt
         presenter = new SportPresenter();
         presenter.bindView(this);
         presenter.getListSport();
-        self.settestMain(self, "SPORT");
+        self.settestMain(self, title_sport);
         self.hideBack(self);
     }
 

@@ -4,9 +4,11 @@ import com.fantasygame.api.ServerAPI;
 import com.fantasygame.base.Presenter;
 import com.fantasygame.define.Dependencies;
 
+import javax.inject.Inject;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+
 
 /**
  * Created by Double T on 1/12/2017.
@@ -16,6 +18,7 @@ public class LoginPresenter extends Presenter<LoginView> {
 
     ServerAPI serverAPI;
 
+    @Inject
     public LoginPresenter() {
         serverAPI = Dependencies.getServerAPI();
     }
@@ -36,7 +39,6 @@ public class LoginPresenter extends Presenter<LoginView> {
                         } catch (Exception ex) {
                         }
                     }
-
                 }, throwable -> {
                     if (view != null) {
                         view.showErrorLoadingUI(throwable);

@@ -14,6 +14,8 @@ import com.fantasygame.utils.Utils;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -25,6 +27,7 @@ public class SelectTeamAdapter extends BaseAdapter {
     List<Team> teams;
     LayoutInflater inflter;
 
+    @Inject
     public SelectTeamAdapter(Context context, List<Team> teams) {
         this.context = context;
         this.teams = teams;

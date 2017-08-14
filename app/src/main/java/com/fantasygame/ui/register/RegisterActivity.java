@@ -1,5 +1,6 @@
 package com.fantasygame.ui.register;
 
+import android.app.Application;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,12 +16,15 @@ import android.widget.Toast;
 import com.fantasygame.R;
 import com.fantasygame.base.BaseActivity;
 import com.fantasygame.data.model.response.RegisterResponse;
+import com.fantasygame.define.FantatsyGame;
 import com.fantasygame.define.Navigator;
 import com.fantasygame.utils.PreferenceUtils;
 import com.fantasygame.utils.UsPhoneNumberFormatter;
 import com.fantasygame.utils.Utils;
 
 import java.lang.ref.WeakReference;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -53,6 +57,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     @Bind(R.id.btnSignUp)
     Button btnSignUp;
 
+    @Inject
     RegisterPresenter presenter;
     String username, password, confirm_pwd, email, phone, address, display_name;
 
@@ -159,7 +164,8 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     }
 
     private void setupPresenter() {
-        presenter = new RegisterPresenter();
+      //  presenter = new RegisterPresenter();
+        FantatsyGame.getInstance().getMainComponent().inject(this);
         presenter.bindView(this);
     }
 

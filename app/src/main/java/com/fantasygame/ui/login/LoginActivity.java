@@ -18,6 +18,10 @@ import com.fantasygame.ui.main.MainActivity;
 import com.fantasygame.utils.PreferenceUtils;
 import com.fantasygame.utils.Utils;
 
+import org.greenrobot.eventbus.EventBus;
+
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -39,7 +43,11 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @Bind(R.id.tv_create_account)
     TextView tv_create_account;
 
+    @Inject
     LoginPresenter presenter;
+    @Inject
+    EventBus eventBus;
+
     String username, password, contentIntent = "";
 
     @Override
@@ -60,6 +68,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
             startActivity(new Intent(this, MainActivity.class));
             finish();
         }
+
+        eventBus.post("test");
     }
 
     @Override
@@ -114,7 +124,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     }
 
     private void setupPresenter() {
-        presenter = new LoginPresenter();
+        FantatsyGame.getInstance().getMainComponent().inject(this);
         presenter.bindView(this);
     }
 

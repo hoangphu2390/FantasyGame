@@ -1,6 +1,7 @@
 package com.fantasygame.ui.matches;
 
 import android.os.Bundle;
+import android.support.annotation.DimenRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -22,12 +23,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.BindString;
 
 /**
  * Created by HP on 13/07/2017.
  */
 
-public class MatchesFragment extends BaseFragment implements MatchesView{
+public class MatchesFragment extends BaseFragment implements MatchesView {
 
     @Bind(R.id.vp_matches)
     ViewPager vp_matches;
@@ -35,6 +37,7 @@ public class MatchesFragment extends BaseFragment implements MatchesView{
     TabLayout tab_matches;
     @Bind(R.id.progressBar)
     ProgressBar progressBar;
+    @BindString(R.string.title_matches) String title_matches;
 
     MatchesPagerAdapter adapter;
     List<String> NameSports, CodeSports;
@@ -53,7 +56,7 @@ public class MatchesFragment extends BaseFragment implements MatchesView{
         presenter.bindView(this);
         presenter.getListSport();
 
-        self.settestMain(self, "MATCHES");
+        self.settestMain(self, title_matches);
         self.showBack(self);
     }
 
@@ -93,11 +96,11 @@ public class MatchesFragment extends BaseFragment implements MatchesView{
 
     @Override
     public void showResultGetListSport(@NonNull SportResponse response) {
-        if(!response.result) return;
+        if (!response.result) return;
         NameSports = new ArrayList<>();
         CodeSports = new ArrayList<>();
         List<Data> listData = response.data;
-        for(Data data : listData){
+        for (Data data : listData) {
             NameSports.add(data.name);
             CodeSports.add(data.code);
         }

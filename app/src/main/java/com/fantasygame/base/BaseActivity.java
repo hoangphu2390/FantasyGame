@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.fantasygame.R;
+import com.fantasygame.define.FantatsyGame;
 
 /**
  * Created by HP on 20/06/2017.

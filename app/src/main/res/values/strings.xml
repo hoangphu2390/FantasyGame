@@ -47,4 +47,6 @@
     <string name="winner_this_week">%s WINNER</string>
     <string name="sport">sport</string>
     <string name="stock">stock</string>
+    <string name="title_matches">Matches</string>
+    <string name="title_sport">SPORT</string>
 </resources>
