@@ -3,6 +3,7 @@ package com.fantasygame.define;
 import android.app.Application;
 
 import com.fantasygame.BuildConfig;
+import com.fantasygame.api.Dependencies;
 
 import timber.log.Timber;
 

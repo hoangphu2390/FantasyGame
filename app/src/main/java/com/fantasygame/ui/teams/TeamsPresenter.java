@@ -2,10 +2,7 @@ package com.fantasygame.ui.teams;
 
 import com.fantasygame.api.ServerAPI;
 import com.fantasygame.base.Presenter;
-import com.fantasygame.define.Dependencies;
-import com.fantasygame.ui.detail_sport.DetailSportView;
-import com.fantasygame.ui.matches.MatchesView;
-import com.fantasygame.ui.select_team.SelectTeamView;
+import com.fantasygame.api.Dependencies;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;

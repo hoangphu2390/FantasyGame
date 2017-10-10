@@ -1,4 +1,4 @@
-package com.fantasygame.data.model;
+package com.fantasygame.data;
 
 /**
  * Created by HP on 31/08/2017.

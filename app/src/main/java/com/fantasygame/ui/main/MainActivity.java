@@ -21,7 +21,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.fantasygame.R;
-import com.fantasygame.data.model.NavDrawerItem;
+import com.fantasygame.data.NavDrawerItem;
 import com.fantasygame.data.model.response.LogoutResponse;
 import com.fantasygame.define.Navigator;
 import com.fantasygame.service.ConnectionService;

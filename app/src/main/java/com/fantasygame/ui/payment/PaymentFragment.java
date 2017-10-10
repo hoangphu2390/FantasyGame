@@ -19,7 +19,7 @@ import com.devmarvel.creditcardentry.library.CreditCardForm;
 import com.fantasygame.BuildConfig;
 import com.fantasygame.R;
 import com.fantasygame.base.BaseFragment;
-import com.fantasygame.data.model.CardCredit;
+import com.fantasygame.data.CardCredit;
 import com.fantasygame.data.model.response.PaymentCardResponse;
 import com.fantasygame.data.model.response.PaymentTicketResponse;
 import com.fantasygame.ui.select_team.SelectTeamFragment;

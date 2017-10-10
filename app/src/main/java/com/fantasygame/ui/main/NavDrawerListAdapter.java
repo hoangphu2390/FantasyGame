@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fantasygame.R;
-import com.fantasygame.data.model.NavDrawerItem;
+import com.fantasygame.data.NavDrawerItem;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.fantasygame.data.model;
+package com.fantasygame.data;
 
 public class NavDrawerItem {
 	

@@ -1,4 +1,4 @@
-package com.fantasygame.define;
+package com.fantasygame.api;
 
 import android.support.annotation.NonNull;
 

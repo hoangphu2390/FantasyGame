@@ -2,10 +2,7 @@ package com.fantasygame.ui.forgot_password;
 
 import com.fantasygame.api.ServerAPI;
 import com.fantasygame.base.Presenter;
-import com.fantasygame.define.Dependencies;
-import com.fantasygame.ui.confirm_info.ConfirmInfoView;
-
-import java.util.TreeMap;
+import com.fantasygame.api.Dependencies;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;

@@ -2,7 +2,7 @@ package com.fantasygame.ui.confirm_info;
 
 import com.fantasygame.api.ServerAPI;
 import com.fantasygame.base.Presenter;
-import com.fantasygame.define.Dependencies;
+import com.fantasygame.api.Dependencies;
 
 import java.util.TreeMap;
 

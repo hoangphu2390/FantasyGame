@@ -2,7 +2,7 @@ package com.fantasygame.ui.login;
 
 import com.fantasygame.api.ServerAPI;
 import com.fantasygame.base.Presenter;
-import com.fantasygame.define.Dependencies;
+import com.fantasygame.api.Dependencies;
 
 
 import rx.android.schedulers.AndroidSchedulers;
