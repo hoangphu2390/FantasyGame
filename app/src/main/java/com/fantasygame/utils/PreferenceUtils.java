@@ -12,6 +12,12 @@ public class PreferenceUtils {
     public static final String PREFS_ApiToken = "__apitokenServer__";
     public static final String PREFS_LogInLogOutCheck = "__loginlogoutcheck__";
 
+    public static final String PREFS_FULLNAME = "__fullname__";
+    public static final String PREFS_PHONE = "__phone__";
+    public static final String PREFS_AVATAR = "__avatar__";
+    public static final String PREFS_ADDRESS = "__address__";
+    public static final String PREFS_EMAIL = "__email__";
+
     public static void saveToPrefs(Context context, String key, String value) {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);

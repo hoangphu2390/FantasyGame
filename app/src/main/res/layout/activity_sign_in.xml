@@ -44,15 +44,15 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/edtUsername"
+                    android:id="@+id/edtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/margin_distance_40dp"
                     android:layout_marginRight="@dimen/margin_distance_40dp"
                     android:background="@drawable/bg_boder_white_radius"
-                    android:hint="@string/username"
+                    android:hint="@string/email_address"
                     android:imeOptions="actionNext"
-                    android:inputType="text"
+                    android:inputType="textEmailAddress"
                     android:paddingBottom="@dimen/padding_distance_10dp"
                     android:paddingLeft="@dimen/padding_distance_20dp"
                     android:paddingRight="@dimen/padding_distance_20dp"
@@ -107,7 +107,18 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/margin_distance_20dp"
-                android:text="@string/sign_up"
+                android:text="@string/create_an_account"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_18" />
+
+
+            <TextView
+                android:id="@+id/tv_forgot_pwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margin_distance_15dp"
+                android:text="@string/forgot_password"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_18" />
         </LinearLayout>

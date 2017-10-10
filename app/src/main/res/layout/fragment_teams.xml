@@ -25,7 +25,7 @@
                 app:tabBackground="@color/black"
                 app:tabGravity="fill"
                 app:tabIndicatorColor="@color/red"
-                app:tabMode="scrollable"
+                app:tabMode="fixed"
                 app:tabPaddingEnd="8dp"
                 app:tabPaddingStart="8dp"
                 app:tabSelectedTextColor="@color/red"

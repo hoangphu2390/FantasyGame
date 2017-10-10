@@ -3,6 +3,7 @@ package com.fantasygame.define;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.fantasygame.ui.forgot_password.ForgotPasswordActivity;
 import com.fantasygame.ui.login.LoginActivity;
 import com.fantasygame.ui.main.MainActivity;
 import com.fantasygame.ui.register.RegisterActivity;
@@ -27,6 +28,12 @@ public class Navigator {
         Intent intent = new Intent(activity, LoginActivity.class);
         activity.startActivity(intent);
         activity.finish();
+    }
+
+
+    public static void openForgotPasswordActivity(Activity activity) {
+        Intent intent = new Intent(activity, ForgotPasswordActivity.class);
+        activity.startActivity(intent);
     }
 
     public static void openLoginActivityRefreshApiToken(Activity activity, String authorized) {

@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.fantasygame.R;
 import com.fantasygame.base.BaseFragment;
-import com.fantasygame.ui.matches.MatchesFragment;
+import com.fantasygame.ui.payment.PaymentFragment;
 import com.fantasygame.ui.sport.SportFragment;
 
 import butterknife.Bind;
@@ -42,9 +42,11 @@ public class CongratFragment extends BaseFragment {
                 tie_breaker_id = getArguments().getString("tie_breaker_id");
             if (getArguments().containsKey("congratulation")) {
                 congratulation = getArguments().getString("congratulation");
+                if (congratulation == null) congratulation = "Congratulation";
                 tv_congratulation.setText(Html.fromHtml(congratulation));
             }
         }
+        self.hideBack(self);
     }
 
     @OnClick(R.id.btnHome)

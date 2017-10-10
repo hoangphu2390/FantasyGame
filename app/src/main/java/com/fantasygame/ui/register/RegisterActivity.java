@@ -8,9 +8,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.fantasygame.R;
 import com.fantasygame.base.BaseActivity;
@@ -32,18 +31,20 @@ import butterknife.OnClick;
 
 public class RegisterActivity extends BaseActivity implements RegisterView {
 
-    @Bind(R.id.edtUsername)
-    EditText edtUsername;
+    @Bind(R.id.edtFirstName)
+    EditText edtFirstName;
+    @Bind(R.id.edtLastName)
+    EditText edtLastName;
     @Bind(R.id.edtPass)
     EditText edtPass;
-    @Bind(R.id.edtDisplayName)
-    EditText edtDisplayName;
     @Bind(R.id.edtPhone)
     EditText edtPhone;
     @Bind(R.id.edtEmail)
     EditText edtEmail;
     @Bind(R.id.edtAddress)
     EditText edtAddress;
+    @Bind(R.id.edtDisplayName)
+    EditText edtDisplayName;
     @Bind(R.id.edtConfirmPass)
     EditText edtConfirmPass;
     @Bind(R.id.ckbTerm)
@@ -52,17 +53,20 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     ProgressBar progressBar;
     @Bind(R.id.btnSignUp)
     Button btnSignUp;
+    @Bind(R.id.ic_pwd_info)
+    ImageView ic_pwd_info;
 
     RegisterPresenter presenter;
-    String username, password, confirm_pwd, email, phone, address, display_name;
+    String password, confirm_pwd, email, phone, first_name, last_name, address, display_name;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         ButterKnife.bind(this);
-
         ckbTerm.setButtonDrawable(R.drawable.ckb_blank);
+        setupPresenter();
+
         ckbTerm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -74,7 +78,13 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
                 new WeakReference<EditText>(edtPhone));
         edtPhone.addTextChangedListener(addLineNumberFormatter);
 
-        setupPresenter();
+        ic_pwd_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utils.showToast("Your password must be 8-20 characters long, contain both " +
+                        "letters and numbers, and must not contain spaces, special characters, or emoji.");
+            }
+        });
     }
 
     @Override
@@ -98,30 +108,58 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
         Utils.showToast(response.message);
         btnSignUp.setEnabled(true);
         if (response.result) {
-            PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_LogInLogOutCheck, "login");
-            if (response.data != null && response.data.api_token != null)
-                PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_ApiToken, response.data.api_token);
-            Navigator.openMainActivity(RegisterActivity.this);
+            String api_token, avatar, phone, email, address, name;
+            if (response.result) {
+                if (response.data != null) {
+                    if (response.data.api_token != null) {
+                        api_token = response.data.api_token;
+                        PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_ApiToken, api_token);
+                    }
+                    if (response.data.avatar != null) {
+                        avatar = response.data.avatar;
+                        PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_AVATAR, avatar);
+                    }
+                    if (response.data.phone_number != null) {
+                        phone = response.data.phone_number;
+                        PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_PHONE, phone);
+                    }
+                    if (response.data.email != null) {
+                        email = response.data.email;
+                        PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_EMAIL, email);
+                    }
+                    if (response.data.address != null) {
+                        address = response.data.address;
+                        PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_ADDRESS, address);
+                    }
+                    if (response.data.display_name != null) {
+                        name = response.data.display_name;
+                        PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_FULLNAME, name);
+                    }
+                }
+                PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_LogInLogOutCheck, "login");
+                Navigator.openMainActivity(RegisterActivity.this);
+            }
         }
     }
 
     private boolean checkConditionRegister() {
         boolean isError = false;
-        username = edtUsername.getText().toString().trim();
         password = edtPass.getText().toString().trim();
         confirm_pwd = edtConfirmPass.getText().toString().trim();
-        display_name = edtDisplayName.getText().toString().trim();
         phone = edtPhone.getText().toString().trim();
-        address = edtAddress.getText().toString().trim();
         email = edtEmail.getText().toString().trim();
+        address = edtAddress.getText().toString().trim();
+        display_name = edtDisplayName.getText().toString().trim();
+        first_name = edtFirstName.getText().toString().trim();
+        last_name = edtLastName.getText().toString().trim();
 
-        if (username.isEmpty()) {
-            edtUsername.setError(getString(R.string.show_error_username));
-            edtUsername.requestFocus();
+        if (first_name.isEmpty()) {
+            edtFirstName.setError(getString(R.string.show_error_first_name));
+            edtFirstName.requestFocus();
             isError = true;
-        } else if (display_name.isEmpty()) {
-            edtDisplayName.setError(getString(R.string.show_error_display_name));
-            edtDisplayName.requestFocus();
+        } else if (last_name.isEmpty()) {
+            edtLastName.setError(getString(R.string.show_error_last_name));
+            edtLastName.requestFocus();
             isError = true;
         } else if (email.isEmpty()) {
             edtEmail.setError(getString(R.string.show_error_email));
@@ -139,8 +177,20 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
             edtAddress.setError(getString(R.string.show_error_address));
             edtAddress.requestFocus();
             isError = true;
+        } else if (display_name.isEmpty()) {
+            edtDisplayName.setError(getString(R.string.show_error_display_name));
+            edtDisplayName.requestFocus();
+            isError = true;
         } else if (password.isEmpty()) {
             edtPass.setError(getString(R.string.show_error_password));
+            edtPass.requestFocus();
+            isError = true;
+        } else if (password.length() < 8) {
+            edtPass.setError(getString(R.string.show_error_password));
+            edtPass.requestFocus();
+            isError = true;
+        } else if (!edtPass.getText().toString().trim().matches("^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$")) {
+            edtPass.setError(getString(R.string.show_error_must_be_contain_both_letters_and_numbers));
             edtPass.requestFocus();
             isError = true;
         } else if (confirm_pwd.isEmpty()) {
@@ -166,14 +216,10 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     @OnClick(R.id.btnSignUp)
     public void clickSignUp() {
         if (checkConditionRegister()) return;
+        phone = phone.replace("(", "").replace(")", "").replace(" ", "-");
         if (Utils.isCheckShowSoftKeyboard(this))
             Utils.hideSoftKeyboard(this);
         btnSignUp.setEnabled(false);
-        presenter.register(username, password, display_name, email, phone, address);
-    }
-
-    @OnClick(R.id.btnBack)
-    public void clickBack() {
-        Navigator.openLoginActivity(RegisterActivity.this);
+        presenter.register(first_name, last_name, password, email, phone, address, display_name);
     }
 }

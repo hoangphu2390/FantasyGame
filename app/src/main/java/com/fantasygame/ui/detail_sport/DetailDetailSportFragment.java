@@ -14,7 +14,7 @@ import com.fantasygame.R;
 import com.fantasygame.base.BaseFragment;
 import com.fantasygame.data.model.response.HowToPlayResponse;
 import com.fantasygame.listener.ContinueSelectTeamListener;
-import com.fantasygame.ui.select_team.SelectTeamFragment;
+import com.fantasygame.ui.payment.PaymentFragment;
 import com.fantasygame.utils.DialogFactory;
 import com.fantasygame.utils.Utils;
 
@@ -122,7 +122,7 @@ public class DetailDetailSportFragment extends BaseFragment implements DetailSpo
         DialogFactory.createHowToPlayDialog(self, game, new ContinueSelectTeamListener() {
             @Override
             public void onContinueSelectTeam() {
-                Fragment fragment = new SelectTeamFragment();
+                Fragment fragment = new PaymentFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("game_id", game.id);
                 bundle.putString("game_name", game.name);

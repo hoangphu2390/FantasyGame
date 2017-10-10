@@ -156,7 +156,7 @@ public class SportFragment extends BaseFragment implements SportView, SportAdapt
         sports = response.data;
         sportAdapter.setDataSource(sports);
         sportAdapter.notifyDataSetChanged();
-        presenter.getAllWinner();
+        // presenter.getAllWinner();
     }
 
     @Override

@@ -49,7 +49,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:text="Confirm Your Information"
+                            android:text="Preview Selection"
                             android:textColor="@color/white"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -159,21 +159,44 @@
         </ScrollView>
 
 
-        <Button
-            android:id="@+id/btnFinish"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/bg_red_radius_10"
             android:gravity="center"
-            android:paddingLeft="25dp"
-            android:paddingRight="25dp"
-            android:text="Finish"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnStartOver"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_yellow_radius_10"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="Start Over"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnFinish"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/bg_red_radius_10"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="Confirm Selection"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 

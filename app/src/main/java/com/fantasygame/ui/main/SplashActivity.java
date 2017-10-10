@@ -27,7 +27,7 @@ public class SplashActivity extends AppCompatActivity {
                     // TODO: handle exception
                     e.printStackTrace();
                 } finally {
-                    Navigator.openLoginActivity(SplashActivity.this);
+                    Navigator.openMainActivity(SplashActivity.this);
                 }
             }
         };

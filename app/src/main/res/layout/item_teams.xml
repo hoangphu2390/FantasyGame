@@ -15,6 +15,7 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_team"
             android:layout_width="80dp"
+            android:visibility="gone"
             android:layout_height="80dp"
             android:background="@android:color/transparent"
             android:src="@drawable/logo_team_1" />

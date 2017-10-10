@@ -19,14 +19,14 @@ public class RegisterPresenter extends Presenter<RegisterView> {
         serverAPI = Dependencies.getServerAPI();
     }
 
-    public void register(String username, String password, String display_name, String email,
-                         String phone_number, String address) {
+    public void register(String firstname, String lastname, String password, String email,
+                         String phone_number, String address, String display_name) {
         final RegisterView view = view();
         if (view != null) {
             view.showLoadingUI();
         }
-        subscriptions.add(serverAPI.register(username, password, display_name, email,
-                phone_number, address)
+        subscriptions.add(serverAPI.register(firstname, lastname, password, email, phone_number,
+                address, display_name)
 
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

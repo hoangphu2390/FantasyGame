@@ -1,6 +1,5 @@
 package com.fantasygame.ui.confirm_info;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -19,14 +18,13 @@ import com.fantasygame.data.model.response.FinishTeamResponse;
 import com.fantasygame.data.model.response.SelectTeamResponse.Team;
 import com.fantasygame.define.Navigator;
 import com.fantasygame.ui.congrat.CongratFragment;
+import com.fantasygame.ui.select_team.SelectTeamFragment;
 import com.fantasygame.utils.PreferenceUtils;
 import com.fantasygame.utils.Utils;
 
 import org.parceler.Parcels;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.TreeMap;
 
 import butterknife.Bind;
@@ -51,7 +49,8 @@ public class ConfirmInfoFragment extends BaseFragment implements ConfirmInfoView
 
     ConfirmTeamAdapter adapter;
     List<Team> teams;
-    String content_tie_breaker, price, game_id, question;
+    String content_tie_breaker, price, game_id, question, transaction_id = "",
+            card_num = "", access_code = "";
     ConfirmInfoPresenter presenter;
 
     @Override
@@ -78,6 +77,15 @@ public class ConfirmInfoFragment extends BaseFragment implements ConfirmInfoView
         if (getArguments() != null && getArguments().containsKey("question")) {
             question = getArguments().getString("question");
         }
+        if (getArguments() != null && getArguments().containsKey("transaction_id")) {
+            transaction_id = getArguments().getString("transaction_id");
+        }
+        if (getArguments() != null && getArguments().containsKey("card_num")) {
+            card_num = getArguments().getString("card_num");
+        }
+        if (getArguments() != null && getArguments().containsKey("access_code")) {
+            access_code = getArguments().getString("access_code");
+        }
         setupUI();
         presenter = new ConfirmInfoPresenter();
         presenter.bindView(this);
@@ -99,15 +107,30 @@ public class ConfirmInfoFragment extends BaseFragment implements ConfirmInfoView
         tv_question.setText(question);
     }
 
+    @OnClick(R.id.btnStartOver)
+    public void clickStartOver() {
+        Fragment fragment = new SelectTeamFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("game_id", game_id);
+        bundle.putString("game_name", self.gettestMain());
+        bundle.putString("tie_breaker_id", getArguments().getString("tie_breaker_id"));
+        bundle.putString("price", price);
+        fragment.setArguments(bundle);
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).addToBackStack(null)
+                .commit();
+    }
+
     @OnClick(R.id.btnFinish)
     public void clickFinish() {
         String api_token = PreferenceUtils.getFromPrefs(self, PreferenceUtils.PREFS_ApiToken, "");
 
         TreeMap<String, String> mapQuery = new TreeMap<>();
         for (int i = 0; i < teams.size(); i++) {
-            mapQuery.put("selected_teams[" + i + "]", teams.get(i).code);
+            mapQuery.put("selected_teams[" + i + "]", teams.get(i).id);
         }
-        presenter.betTeams(game_id, content_tie_breaker, api_token, mapQuery);
+        presenter.betTeams(game_id, content_tie_breaker, api_token,
+                transaction_id, card_num, access_code, mapQuery);
     }
 
     @Override

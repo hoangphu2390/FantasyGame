@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_sign_in"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/rdb_access_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:text="I have an access code:"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtAccessCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_distance_15dp"
+                    android:layout_marginRight="@dimen/margin_distance_15dp"
+                    android:layout_marginTop="@dimen/margin_distance_15dp"
+                    android:background="@drawable/bg_boder_white_radius"
+                    android:hint="@string/access_code"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:paddingBottom="@dimen/padding_distance_10dp"
+                    android:paddingLeft="@dimen/padding_distance_20dp"
+                    android:paddingRight="@dimen/padding_distance_20dp"
+                    android:paddingTop="@dimen/padding_distance_10dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="@dimen/text_size_14"
+                    android:textStyle="italic" />
+
+                <RadioButton
+                    android:id="@+id/rdb_buy_ticket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:paddingLeft="5dp"
+                    android:text="Or buy a ticket:"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <com.devmarvel.creditcardentry.library.CreditCardForm
+                    android:id="@+id/credit_card_form"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="15dp"
+                    app:include_exp="true"
+                    app:include_helper="true"
+                    app:include_security="true"
+                    app:include_zip="false" />
+
+            </RadioGroup>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/btnPayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="50dp"
+                android:background="@drawable/bg_btn_app"
+                android:text="@string/btnAddPayment"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.ProgressBar"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+</LinearLayout>

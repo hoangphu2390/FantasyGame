@@ -6,7 +6,8 @@
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
         <item>Game status</item>
-        <item>Setting</item>
+        <item>Profile</item>
+        <item>Sign in</item>
         <item>Matches</item>
         <item>Teams</item>
         <item>Result</item>
@@ -17,7 +18,11 @@
     <string name="show_error_email_invalid">Email invalid</string>
     <string name="show_error_email">Please enter email</string>
     <string name="show_error_username">Please enter username</string>
+    <string name="show_error_first_name">Please enter first name</string>
+    <string name="show_error_last_name">Please enter last name</string>
     <string name="show_error_password">Please enter password</string>
+    <string name="show_error_must_be_contain_both_letters_and_numbers">Your password must be contain both letters and numbers</string>
+    <string name="show_error_length_password">Your password must be 8-20 characters.Please enter again</string>
     <string name="show_error_phone">Please enter phone</string>
     <string name="show_error_address">Please enter address</string>
     <string name="show_error_display_name">Please enter display name</string>
@@ -30,6 +35,11 @@
     <!-- Sign in -->
     <string name="email">Email</string>
     <string name="username">Username</string>
+    <string name="firstname">First Name</string>
+    <string name="lastname">Last Name</string>
+    <string name="email_address">Email Address</string>
+    <string name="access_code">Access Code</string>
+    <string name="com.stripe.publishable_key" translatable="false">pk_test_dEmXgjPVDjPa6JDYkyR3Q6Jl</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="read_term_and_policy">I have read the Term and Policy</string>
@@ -38,8 +48,14 @@
     <string name="address">Address</string>
     <string name="forgot_pass"><u>Forgot password?</u></string>
     <string name="sign_up"><u>Sign up</u></string>
+    <string name="create_an_account">Create An Account</string>
+    <string name="forgot_password"><u>Forgot Password? Click here</u></string>
     <string name="btnSignup">Sign up</string>
     <string name="btnSignin">Sign in</string>
+    <string name="btnSignout">Sign out</string>
+    <string name="btnEdit">Edit</string>
+    <string name="btnAddPayment">Add Payment</string>
+    <string name="btnResetPwd">Reset Password</string>
     <string name="btnContinue">Continue</string>
     <string name="btnRandom">Random</string>
     <string name="btnHome">Home</string>

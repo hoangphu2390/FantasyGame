@@ -12,6 +12,7 @@ public class SelectTeamResponse {
 
     @Parcel
     public static class Team {
+        public String id;
         public String season;
         public String code;
         public String name;

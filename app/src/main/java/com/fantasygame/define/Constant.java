@@ -15,6 +15,7 @@ public class Constant {
 
     // Key Bundle
     public static final String POSITION = "position";
+    public static final String GAMES = "games";
     public static final String ITEM_SPORT = "item_sport";
 
     // Tab Pick

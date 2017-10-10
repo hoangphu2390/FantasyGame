@@ -2,6 +2,7 @@ package com.fantasygame.ui.main;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,9 +25,10 @@ import com.fantasygame.data.model.NavDrawerItem;
 import com.fantasygame.data.model.response.LogoutResponse;
 import com.fantasygame.define.Navigator;
 import com.fantasygame.service.ConnectionService;
+import com.fantasygame.ui.congrat.CongratFragment;
 import com.fantasygame.ui.matches.MatchesFragment;
+import com.fantasygame.ui.profile.ProfileFragment;
 import com.fantasygame.ui.result.ResultFragment;
-import com.fantasygame.ui.setting.SettingFragment;
 import com.fantasygame.ui.sport.SportFragment;
 import com.fantasygame.ui.teams.TeamsFragment;
 import com.fantasygame.utils.PreferenceUtils;
@@ -40,7 +42,7 @@ import butterknife.OnClick;
 
 public class MainActivity extends FragmentActivity implements MainView, ConnectionService.postResultConnection {
 
-    final int[] Menu_Icons = {R.drawable.info, R.drawable.setting, R.drawable.ic_matches,
+    final int[] Menu_Icons = {R.drawable.info, R.drawable.ic_profile, R.drawable.ic_signin, R.drawable.ic_matches,
             R.drawable.ic_teams, R.drawable.ic_result, R.drawable.logout};
 
     @Bind(R.id.drawer_layout)
@@ -71,6 +73,7 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
     ConnectionService connectionService;
     MainPresenter presenter;
     ProgressDialog progressDialog;
+    String checklogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,10 +90,15 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
         presenter = new MainPresenter();
         presenter.bindView(this);
 
+        checklogin = PreferenceUtils.getFromPrefs(this, PreferenceUtils.PREFS_LogInLogOutCheck, "logout");
+
         mTitle = mDrawerTitle = getTitle();
         navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
         navDrawerItems = new ArrayList<NavDrawerItem>();
         for (int i = 0; i < Menu_Icons.length; i++) {
+            if (i == 1 && checklogin.equals("logout")) continue;
+            else if (i == 2 && checklogin.equals("login")) continue;
+            if (i == 6 && checklogin.equals("logout")) continue;
             navDrawerItems.add(new NavDrawerItem(navMenuTitles[i], Menu_Icons[i]));
         }
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
@@ -145,6 +153,9 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             // display view for selected nav drawer item
+            if (mDrawerLayout.isDrawerOpen(mDrawerList)) {
+                mDrawerLayout.closeDrawer(mDrawerList);
+            }
             displayView(position);
         }
 
@@ -158,7 +169,10 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
                 fragment = new SportFragment();
                 break;
             case 1:
-                fragment = new SettingFragment();
+                if (checklogin.equals("login"))
+                    fragment = new ProfileFragment();
+                else
+                    Navigator.openLoginActivity(self);
                 break;
             case 2:
                 fragment = new MatchesFragment();
@@ -171,12 +185,16 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
                 break;
             case 5:
                 String api_token = PreferenceUtils.getFromPrefs(this, PreferenceUtils.PREFS_ApiToken, "");
-                if (api_token != null && !api_token.isEmpty()){
+                if (api_token != null && !api_token.isEmpty()) {
                     Utils.showToast(getString(R.string.logout_successful));
                     PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_LogInLogOutCheck, "logout");
-                    Navigator.openLoginActivity(MainActivity.this);
+                    PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_AVATAR, "");
+                    PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_FULLNAME, "");
+                    PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_EMAIL, "");
+                    PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_PHONE, "");
+                    PreferenceUtils.saveToPrefs(getApplicationContext(), PreferenceUtils.PREFS_ADDRESS, "");
+                    Navigator.openMainActivity(MainActivity.this);
                 }
-                  //  presenter.logout(api_token);
                 break;
             default:
                 break;
@@ -250,6 +268,10 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.frame_container);
         if (currentFragment instanceof SportFragment) {
             onClickBack();
+        } else if (currentFragment instanceof CongratFragment) {
+            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
         } else {
             FragmentManager fm = getSupportFragmentManager();
             fm.popBackStack();
@@ -258,6 +280,10 @@ public class MainActivity extends FragmentActivity implements MainView, Connecti
 
     public static void settestMain(Context context, String str) {
         MainActivity.self.txt_mainsettext.setText(str);
+    }
+
+    public static String gettestMain() {
+        return MainActivity.self.txt_mainsettext.getText().toString();
     }
 
     public static void hideBack(Context context) {

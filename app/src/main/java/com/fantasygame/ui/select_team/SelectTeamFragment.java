@@ -24,7 +24,6 @@ import com.fantasygame.utils.Utils;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -52,7 +51,7 @@ public class SelectTeamFragment extends BaseFragment implements SelectTeamView {
 
     SelectTeamAdapter adapter;
     SelectTeamPresenter presenter;
-    String game_id, tie_breaker_id, game_name;
+    String game_id, tie_breaker_id, game_name, price;
 
     @Override
     protected int getLayoutId() {
@@ -75,6 +74,8 @@ public class SelectTeamFragment extends BaseFragment implements SelectTeamView {
                 tie_breaker_id = getArguments().getString("tie_breaker_id");
             if (getArguments().containsKey("game_name"))
                 game_name = getArguments().getString("game_name");
+            if (getArguments().containsKey("price"))
+                price = getArguments().getString("price");
         }
 
         presenter = new SelectTeamPresenter();
@@ -95,9 +96,12 @@ public class SelectTeamFragment extends BaseFragment implements SelectTeamView {
         Bundle bundle = new Bundle();
         bundle.putString("tie_breaker_id", tie_breaker_id);
         bundle.putParcelable("teams", Parcels.wrap(selected_teams));
-        bundle.putString("price", getArguments().getString("price"));
+        bundle.putString("price", price);
         bundle.putString("game_id", game_id);
         bundle.putString("congratulation", getArguments().getString("congratulation"));
+        bundle.putString("transaction_id", getArguments().getString("transaction_id"));
+        bundle.putString("card_num", getArguments().getString("card_num"));
+        bundle.putString("access_code", getArguments().getString("access_code"));
         fragment.setArguments(bundle);
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).addToBackStack(null)

@@ -12,5 +12,10 @@ public class LoginResponse {
 
     public class Data {
         public String api_token;
+        public String display_name;
+        public String phone_number;
+        public String avatar;
+        public String address;
+        public String email;
     }
 }
